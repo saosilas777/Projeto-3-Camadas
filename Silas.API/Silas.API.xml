@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Silas.API</name>
+    </assembly>
+    <members>
+        <member name="M:Silas.API.Controllers.AuthenticationController.Authentication(Silas.API.Models.AuthenticationModels)">
+            <summary>
+            Autentica usuário e gera token
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.AuthenticationController.RefreshToken(System.String)">
+            <summary>
+            Atualiza token baseado no token válido
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.Persons.PersonsController.Create(Silas.Service.Persons.DTO.PersonDTO)">
+            <summary>
+            Create person method
+            </summary>
+            <param name="person"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.Persons.PersonsController.GetPerson(System.String)">
+            <summary>
+            Method to get person by Id type Guid
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Silas.API.Models.AuthenticationModels">
+            <summary>
+            Modelo de autenticação
+            </summary>
+        </member>
+        <member name="T:Silas.API.Models.UserModels">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Silas.API.Models.UserModels.Password">
+            <summary>
+            Password must have (special 1 caracter !@#$%* - 1 Upper caracter and  1 number caracter)
+            </summary>
+        </member>
+    </members>
+</doc>

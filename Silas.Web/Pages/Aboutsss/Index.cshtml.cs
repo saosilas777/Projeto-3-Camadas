@@ -6,20 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Silas.Web.Pages
+namespace Silas.Web.Pages.About
 {
     public class IndexModel : PageModel
     {
-        //private readonly ILogger<IndexModel> _logger;
+        //private readonly ILogger<AboutModel> _logger;
 
-        //public IndexModel(ILogger<IndexModel> logger)
+        //public AboutModel(ILogger<AboutModel> logger)
         //{
         //    _logger = logger;
         //}
 
         public void OnGet()
         {
-
         }
     }
 }

@@ -19,12 +19,55 @@ namespace Data.Migrations
                     Bairro = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
                     Cidade = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
                     Estado = table.Column<string>(type: "varchar(2)", unicode: false, maxLength: 2, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ClienteId = table.Column<int>(type: "int", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cliente", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Emails",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "varchar(max)", unicode: false, maxLength: 2147483647, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Emails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HistoricoCliente",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegistroDeContato = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoricoCliente", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HistoricoCompra",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Valor = table.Column<double>(type: "float", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoricoCompra", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,6 +122,20 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Telefones",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Telefone = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Telefones", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -97,112 +154,13 @@ namespace Data.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Emails",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Email = table.Column<string>(type: "varchar(max)", unicode: false, maxLength: 2147483647, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Emails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Emails_Cliente_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Cliente",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HistoricoCliente",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RegistroDeContato = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HistoricoCliente", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HistoricoCliente_Cliente_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Cliente",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HistoricoCompra",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Valor = table.Column<double>(type: "float", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HistoricoCompra", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HistoricoCompra_Cliente_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Cliente",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Telefones",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Telefone = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Telefones", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Telefones_Cliente_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Cliente",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Emails_ClienteId",
-                table: "Emails",
-                column: "ClienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HistoricoCliente_ClienteId",
-                table: "HistoricoCliente",
-                column: "ClienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HistoricoCompra_ClienteId",
-                table: "HistoricoCompra",
-                column: "ClienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Telefones_ClienteId",
-                table: "Telefones",
-                column: "ClienteId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Cliente");
+
             migrationBuilder.DropTable(
                 name: "Emails");
 
@@ -226,9 +184,6 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Cliente");
         }
     }
 }

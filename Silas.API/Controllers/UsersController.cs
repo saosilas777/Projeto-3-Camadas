@@ -24,7 +24,7 @@ namespace Silas.API.Controllers
             _userService = new UserService();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("Create")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]

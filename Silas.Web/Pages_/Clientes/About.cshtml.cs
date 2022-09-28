@@ -7,6 +7,7 @@ namespace Silas.Web.Pages.Clientes
     {
         public void OnGet()
         {
+             
         }
     }
 }

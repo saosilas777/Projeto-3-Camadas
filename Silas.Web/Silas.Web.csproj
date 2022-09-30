@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Silas.API\Silas.API.csproj" />
     <ProjectReference Include="..\Silas.Data\Data.csproj" />
   </ItemGroup>
 

@@ -1,24 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Silas.Web.Models.ViewModels;
 using System.Threading.Tasks;
-using Silas.Web.WebServices;
-using Silas.API.Models;
+using Silas.Web.Services;
 using System.Linq;
-using Domain.Entity;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
-using Silas.API.Services;
 using System;
 
 namespace Silas.Web.Controllers
 {
     public class ClientesController : Controller
     {
-        WebServices.WebServices _services;
+        ClienteServices _services;
 
         public ClientesController()
         {
-            _services = new WebServices.WebServices();
+            _services = new ClienteServices();
         }
 
         public IActionResult Index()
@@ -29,14 +26,15 @@ namespace Silas.Web.Controllers
         {
             return View("About");
         }
-
-        [HttpPost("CadastrarCliente")]
-        public string CadastrarCliente([FromForm] ClienteViewModel cliente)
+        public IActionResult Clientes()
         {
-                       
-             return _services.Create(cliente);
-            
+            return View("Clientes");
         }
-       
+
+        //[HttpPost("CadastrarCliente")]
+        //public string CadastrarCliente([FromForm] ClienteViewModel cliente)
+        //{
+        //}
+
     }
 }

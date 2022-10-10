@@ -43,6 +43,23 @@ namespace Silas.API.Controllers
 
         }
 
+        [HttpGet("ClientesCadastrados")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 500)]
+        public async Task<object> ClientesCadastrados()
+        {
+            try
+            {
+                return await _clienteServices.GetAll();
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+
+        }
+
         [HttpPost("NovoRegistroDeCompra")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]

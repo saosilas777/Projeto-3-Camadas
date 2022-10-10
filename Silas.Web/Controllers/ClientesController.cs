@@ -28,8 +28,11 @@ namespace Silas.Web.Controllers
         }
         public IActionResult Clientes()
         {
-            return View("Clientes");
+            return View(_services.GetAllClients());
         }
+
+       
+
 
         //[HttpPost("CadastrarCliente")]
         //public string CadastrarCliente([FromForm] ClienteViewModel cliente)

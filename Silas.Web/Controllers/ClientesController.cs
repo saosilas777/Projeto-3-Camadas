@@ -28,7 +28,7 @@ namespace Silas.Web.Controllers
         }
         public IActionResult Clientes()
         {
-            return View(_services.GetAllClients());
+            return View("Clientes");
         }
 
        

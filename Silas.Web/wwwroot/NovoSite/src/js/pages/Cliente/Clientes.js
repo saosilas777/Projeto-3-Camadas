@@ -15,6 +15,10 @@
     });
 }
 
+"use strict";
+
+var KTDatatablesDataSourceHtml = function () { };
+
 
 var KTDatatable = function () {
     var load = function () {

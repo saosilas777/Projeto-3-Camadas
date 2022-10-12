@@ -1,12 +1,21 @@
-﻿function GetParams() {
-    $.get("https://localhost:5001", function (data) {
+﻿"use strict";
+let jsonResponse;
+
+function initDOM() {
+    setTimeout(() => { ClientesCadastrados(); }, 1000)
+}
+
+
+function ClientesCadastrados() {
+
+    $.get("/Clientes/ClientesCadastrados", function (data) {
         jsonResponse = data;
     }).done(function () {
         setTimeout(function () {
             jQuery(document).ready(function () {
                 KTDatatable.init();
             });
-        }, 20);
+        }, 200);
     }).fail(function (e) {
         var json = JSON.parse(e.responseText);
         var msg = "Code: " + json.code + "\nError Msg: " + json.errorMessage + "\nMsg: " + json.message;
@@ -15,19 +24,14 @@
     });
 }
 
-"use strict";
-
-var KTDatatablesDataSourceHtml = function () { };
-
-
 var KTDatatable = function () {
     var load = function () {
-        var array = JSON.parse(jsonResponse);
+        var Array = JSON.parse(jsonResponse);
         var datatable = $('#kt_datatable').KTDatatable({
             // datasource definition
             data: {
                 type: 'local',
-                source: array,
+                source: Array,
                 pageSize: 100,
             },
             // layout definition
@@ -38,35 +42,35 @@ var KTDatatable = function () {
             // column sorting
             sortable: true,
             pagination: true,
-            search: {
-                input: $('#kt_datatable_search_query'),
-                key: 'generalSearch'
-            },
+
             // columns definition
             columns: [{
-                field: 'Codigo',
-                title: '#',
+                field: 'codigo',
+                title: 'Codigo',
                 sortable: false,
-                width: 40,
-                type: 'number',
+                width: 150,
                 //selector: {
                 //    class: ''
                 //},
                 textAlign: 'center',
                 template: function (row) {
-                    return '<a href="javascript:OpenParamDetail(' + [row.id] + ')">' + [row.id] + '</a>';
+                    return '<a href="javascript:buscarCliente(' + [row.codigo] + ')[0]">' + [row.codigo] + '</a>';
                 }
             }, {
-                field: 'RazaoSocial',
+                field: 'razaoSocial',
+                width: 350,
                 title: 'Razao Social',
             }, {
-                field: 'Cidade',
+                field: 'cidade',
+                width: 100,
                 title: 'Cidade',
             }, {
-                field: 'Estado',
+                field: 'estado',
+                width: 60,
                 title: 'Estado',
             }, {
                 field: 'isActive',
+                width: 100,
                 title: 'Status',
                 autoHide: false,
                 // callback function support for column rendering
@@ -88,8 +92,7 @@ var KTDatatable = function () {
         $('#kt_datatable_search_level').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'isActive');
         });
-        // $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
-        $('#kt_datatable_search_type').selectpicker();
+
     };
     return {
         // public functions
@@ -98,3 +101,16 @@ var KTDatatable = function () {
         }
     };
 }();
+
+
+function buscarCliente(codigo) {
+    var json = JSON.parse(jsonResponse);
+    var result = $(
+        json.data).filter(function (i, n) {
+            return n.codigo === codigo;
+        });
+    return result;
+}
+
+
+initDOM();

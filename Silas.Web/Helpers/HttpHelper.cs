@@ -27,7 +27,6 @@ namespace Silas.Web.Helpers
             IRestResponse response = client.Execute(request);
             return response;
             
-
         }
 
     }

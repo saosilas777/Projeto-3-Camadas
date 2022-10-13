@@ -1,3 +1,10 @@
 ﻿@{
+    
+    if (ViewBag.isLogin != null && ViewBag.isLogin)
+    {
+        Layout = "_Login";
+        IgnoreBody();
+        return;
+    }
     Layout = "_Layout2";
 }

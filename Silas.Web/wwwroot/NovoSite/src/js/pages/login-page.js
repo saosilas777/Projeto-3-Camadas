@@ -26,7 +26,8 @@ function login() {
     
     var model = { username: domUserName.value, password: domPwd.value };
     $.post("/Authentication", model, function (data) {       
-        jsonResponse = data;      
+        jsonResponse = data;  
+        console.log("passou");
     }).done(function () {
     }).fail(function (e) {
         

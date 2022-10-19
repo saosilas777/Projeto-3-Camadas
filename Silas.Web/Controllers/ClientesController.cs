@@ -24,6 +24,12 @@ namespace Silas.Web.Controllers
         {
             return View("Index");
         }
+
+        [HttpGet("Cadastro")]
+        public IActionResult CadastroCliente()
+        {
+            return View("CadastroCliente");
+        }
         [HttpGet("About")]
         public IActionResult About()
         {

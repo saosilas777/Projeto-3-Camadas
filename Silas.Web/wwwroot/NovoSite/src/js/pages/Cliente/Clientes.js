@@ -104,12 +104,7 @@ var KTDatatable = function () {
 
 
 function buscarCliente(codigo) {
-    var json = JSON.parse(jsonResponse);
-    var result = $(
-        json.data).filter(function (i, n) {
-            return n.codigo === codigo;
-        });
-    return result;
+    window.location.href = "/Clientes/CadastroCliente?codigo=" + codigo;
 }
 
 

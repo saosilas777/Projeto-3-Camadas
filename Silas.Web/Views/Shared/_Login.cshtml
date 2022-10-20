@@ -93,12 +93,12 @@ License: You must have a valid license purchased only from themeforest(the above
                             <h3>Faça seu login!</h3>
                             <div class="text-muted font-weight-bold">Entre com os dados da sua conta:</div>
                         </div>
-                        <form class="form" id="kt_login_signin_form">
+                        <form asp-controller="Authentication" asp-action="Auth" method="post" class="form" id="kt_login_signin_form">
                             <div class="form-group mb-5">
-                                <input class="form-control h-auto form-control-solid py-4 px-8" type="text" placeholder="Email" name="username" autocomplete="off" />
+                                <input class="form-control h-auto form-control-solid py-4 px-8" type="text" placeholder="Email" id="username" name="nome" autocomplete="off" />
                             </div>
                             <div class="form-group mb-5">
-                                <input class="form-control h-auto form-control-solid py-4 px-8" type="password" placeholder="senha" name="password" />
+                                <input class="form-control h-auto form-control-solid py-4 px-8" type="password" placeholder="senha" id="password" name="senha" />
                             </div>
                             <div class="form-group d-flex flex-wrap justify-content-between align-items-center">
                                 <label class="checkbox m-0 text-muted">
@@ -107,7 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </label>
                                 <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">Esqueceu sua senha ?</a>
                             </div>
-                            <button id="kt_login_signin_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Sign In</button>
+                            <button type="submit" id="kt_login_signin_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Sign In</button>
                         </form>
                         <div class="mt-10">
                             <span class="opacity-70 mr-4">Don't have an account yet?</span>

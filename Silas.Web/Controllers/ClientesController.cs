@@ -20,13 +20,14 @@ namespace Silas.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string accessToken)
         {
+            
             return View("Index");
         }
 
-        [HttpGet("Cadastro")]
-        public IActionResult CadastroCliente()
+        [HttpGet("CadastroCliente")]
+        public IActionResult CadastroCliente(string codigo)
         {
             return View("CadastroCliente");
         }
@@ -38,6 +39,7 @@ namespace Silas.Web.Controllers
         [HttpGet("Clientes")]
         public IActionResult Clientes()
         {
+
             return View("Clientes");
         }
 

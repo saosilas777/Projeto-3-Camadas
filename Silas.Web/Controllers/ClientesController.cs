@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
+using Silas.Web.Models;
 
 namespace Silas.Web.Controllers
 {
@@ -46,17 +47,17 @@ namespace Silas.Web.Controllers
         }
 
         [HttpGet("Cliente")]
-        public dynamic Cliente()
+        public dynamic Cliente(int codigo)
         {
-            return View("Cliente");
-
+            var avm = _services.Cliente(codigo);
+            return View("Cliente", avm);
         }
 
         [HttpGet("BuscarCliente")]
-        public dynamic BuscarCliente(int codigo)
+        public dynamic BuscarCliente(string codigo)
         {
-            return _services.BuscarCliente(codigo);
-            
+            return _services.BuscarCliente(int.Parse(codigo));
+
         }
 
         [HttpGet("ListarClientesCadastrados")]

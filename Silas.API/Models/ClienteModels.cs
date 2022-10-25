@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Silas.API.Models
 {
-    public class ClienteModels
+    public class ClienteModels 
     {
         public int Codigo { get; set; }
         public string RazaoSocial { get; set; }

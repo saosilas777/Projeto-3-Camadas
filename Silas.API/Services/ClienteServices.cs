@@ -98,18 +98,64 @@ namespace Silas.API.Services
         }
         public async Task<object> GetByCode(int code)
         {
-            return await _clienteRepository.GetByCode(code);
+            var _cliente = _clienteRepository.GetByCode(code).Result.FirstOrDefault();
+            ICollection<TelefonesModel> tels = new List<TelefonesModel>();
+            ICollection<EmailsModel> emails = new List<EmailsModel>();
+
+            tels.Add(new TelefonesModel { Telefone = "11999999999" });
+            tels.Add(new TelefonesModel { Telefone = "11999999998" });
+
+            emails.Add(new EmailsModel { Email = "bbb@contoso.com" });
+            emails.Add(new EmailsModel { Email = "aaa@contoso.com" });
+
+            var clienteModel = new ClienteModels
+            {
+                Bairro = _cliente.Bairro,
+                Cidade = _cliente.Cidade,
+                Codigo = _cliente.Codigo,
+                Estado = _cliente.Estado,
+                RazaoSocial = _cliente.RazaoSocial,
+                IsActive = _cliente.IsActive,
+                Contato = new ContatoModels
+                {
+                    Email = emails,
+                    Telefone = tels,
+                }
+            };
+
+            return clienteModel;
         }
+
+        //public async Task<object> GetByCode(int code)
+        //{
+        //    return await _clienteRepository.GetByCode(code);
+        //}
+        ////var _telefone = _telefoneRepository.GetAll().Result.Where(x => x.Id == _cliente.Id);
+        //Cliente cliente = new Cliente();
+        //Telefones tel = new Telefones();
+        //foreach (Cliente cl in _cliente.Result)
+        //{
+        //    if(cl.Codigo == code)
+        //    {
+        //         //= new Telefones { ClienteId = cl.Id, Telefone = cl.}
+        //        cliente = new Cliente { Codigo = cl.Codigo, Bairro = cl.Bairro.ToString(), Cidade = cl.Cidade.ToString(), Estado = cl.Estado.ToString(), Id = cl.Id, RazaoSocial = cl.RazaoSocial.ToString() };
+        //    }
+        //}
+        //return cliente;
+
+
+
+
 
         public string AddCompra(HistoricoCompraModel compra)
         {
             var cliente = _clienteRepository.GetAll().Result.Where(x => x.Id == compra.ClienteID).FirstOrDefault();
             HistoricoCompra _compra = new HistoricoCompra { ClienteId = cliente.Id, Data = compra.Data, Valor = compra.Valor, IsActive = true };
             _compraRepository.Add(_compra);
-            
+
             return "Compra cadastrada";
-            
-            
+
+
         }
         public string AddRegistro(HistoricoClienteModel resgistro)
         {

@@ -1,20 +1,20 @@
 ﻿"use strict";
 let jsonResponse;
+const codigoCliente = document.getElementById("codigoCliente");
 
 function initDOM() {
-    setTimeout(() => { BuscarCliente(); }, 200);
+    //setTimeout(() => { BuscarCliente(); }, 200);
 }
 
 
 function BuscarCliente() {
-
-    $.get("/Clientes/BuscarCliente", function (data) {
-        jsonResponse = data;
+    $.get("/Clientes/BuscarCliente?codigo=" + codigoCliente.value, function (data) {
+        jsonResponse = JSON.parse(data);
     }).done(function () {
         setTimeout(function () {
-            jQuery(document).ready(function () {
-                KTDatatable.init();
-            });
+            //document.getElementById("codigo").value = jsonResponse[0].codigo;
+            //document.getElementById("razaoSocial").value = jsonResponse[0].razaoSocial;
+            
         }, 200);
     }).fail(function (e) {
         var json = JSON.parse(e.responseText);

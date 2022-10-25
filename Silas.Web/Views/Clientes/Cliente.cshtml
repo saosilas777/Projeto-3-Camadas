@@ -1,6 +1,15 @@
-﻿@{
-    
+﻿@model ApplicationViewModel
+@{
+    var codigo = @Model.ClienteViewModel.Codigo;
+    var razaoSocial = @Model.ClienteViewModel.RazaoSocial;
+    var bairro = @Model.ClienteViewModel.Bairro;
+    var cidade = @Model.ClienteViewModel.Cidade;
+    var estado = @Model.ClienteViewModel.Estado;
+    var data = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 }
+
+<input hidden id="codigoCliente" value="@Model.ClienteViewModel.Codigo" />
+
 <div id="Cliente">
     <div class="card card-custom">
         <div class="card-header">
@@ -14,37 +23,37 @@
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Código Cliente</label>
                     <div class="col-10">
-                        <output class="form-control" type="text"  id="codigo" name="Codigo" />
+                        <output class="form-control" type="text" id="codigo" name="Codigo">@codigo</output>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-search-input" class="col-2 col-form-label">Razão Social</label>
                     <div class="col-10">
-                        <output class="form-control" type="text" id="example-search-input" name="razaosocial" />
-                    </div>
+                        <output class="form-control" type="text" id="razaoSocial" name="razaosocial">@razaoSocial</output> 
+                    </div>                
                 </div>
                 <div class="form-group row">
                     <label for="example-email-input" class="col-2 col-form-label">Bairro</label>
                     <div class="col-10">
-                        <output class="form-control" type="text" id="example-email-input" name="bairro" />
+                        <output class="form-control" type="text" id="bairro" name="bairro">@bairro</output>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-url-input" class="col-2 col-form-label">Cidade</label>
                     <div class="col-10">
-                        <output class="form-control" id="example-url-input" name="cidade" />
+                        <output class="form-control" id="cidade" name="cidade">@cidade</output>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-tel-input" class="col-2 col-form-label">Estado</label>
                     <div class="col-10">
-                        <output class="form-control" type="text"  id="example-tel-input" name="estado" />
+                        <output class="form-control" type="text" id="example-tel-input" name="estado">@estado</output>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-password-input" class="col-2 col-form-label">Telefone</label>
                     <div class="col-10">
-                        <output class="form-control" type="number" id="example-password-input" name="telefone" />
+                        <output class="form-control" type="number" id="example-password-input" name="telefone"></output>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -62,7 +71,7 @@
                 <div class="form-group row">
                     <label for="example-number-input" class="col-2 col-form-label">Data</label>
                     <div class="col-10">
-                        <output class="form-control" type="date" id="example-date-input" name="data" />
+                        <output class="form-control" type="date" id="example-date-input" name="data">@data</output>
                     </div>
                 </div>
             </div>

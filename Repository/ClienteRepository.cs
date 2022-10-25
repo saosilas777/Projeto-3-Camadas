@@ -37,6 +37,11 @@ namespace Repository
             var cliente = (from l in _db.Cliente select l).AsEnumerable().ToHashSet();
             return cliente;
         }
+        public async Task<HashSet<Cliente>> GetByCode(int code)
+        {
+            var cliente = (from l in _db.Cliente where l.Codigo == code select l).AsEnumerable().ToHashSet();
+            return cliente;
+        }
 
         public Task AddRange()
         {

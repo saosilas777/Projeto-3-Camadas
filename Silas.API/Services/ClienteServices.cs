@@ -96,6 +96,10 @@ namespace Silas.API.Services
         {
             return await _clienteRepository.GetAll();
         }
+        public async Task<object> GetByCode(int code)
+        {
+            return await _clienteRepository.GetByCode(code);
+        }
 
         public string AddCompra(HistoricoCompraModel compra)
         {

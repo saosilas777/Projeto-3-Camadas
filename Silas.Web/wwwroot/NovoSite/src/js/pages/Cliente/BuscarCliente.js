@@ -2,13 +2,13 @@
 let jsonResponse;
 
 function initDOM() {
-    setTimeout(() => { ClientesCadastrados(); }, 1000)
+    setTimeout(() => { BuscarCliente(); }, 200);
 }
 
 
-function ClientesCadastrados() {
+function BuscarCliente() {
 
-    $.get("/Clientes/ListarClientesCadastrados", function (data) {
+    $.get("/Clientes/BuscarCliente", function (data) {
         jsonResponse = data;
     }).done(function () {
         setTimeout(function () {
@@ -54,7 +54,7 @@ var KTDatatable = function () {
                 //},
                 textAlign: 'center',
                 template: function (row) {
-                    return '<a href="javascript:Cliente(' + [row.codigo] + ')[0]">' + [row.codigo] + '</a>';
+                    return '<a href="javascript:buscarCliente(' + [row.codigo] + ')[0]">' + [row.codigo] + '</a>';
                 }
             }, {
                 field: 'razaoSocial',
@@ -101,18 +101,5 @@ var KTDatatable = function () {
         }
     };
 }();
-
-
-
-//function buscarCliente(codigo) {
-//    window.location.href = "/Clientes/BuscarCliente?codigo=" + codigo;
-//    
-//}
-
-function Cliente(codigo) {
-    /*window.location.href = "/Clientes/BuscarCliente?codigo=" + codigo;*/
-    window.location.href = "/Clientes/Cliente";
-    
-}
 
 initDOM();

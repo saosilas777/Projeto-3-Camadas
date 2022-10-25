@@ -6,6 +6,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
 
 namespace Silas.Web.Controllers
 {
@@ -22,12 +24,12 @@ namespace Silas.Web.Controllers
         [HttpGet]
         public IActionResult Index(string accessToken)
         {
-            
+
             return View("Index");
         }
 
         [HttpGet("CadastroCliente")]
-        public IActionResult CadastroCliente(string codigo)
+        public IActionResult CadastroCliente()
         {
             return View("CadastroCliente");
         }
@@ -36,18 +38,35 @@ namespace Silas.Web.Controllers
         {
             return View("About");
         }
-        [HttpGet("Clientes")]
-        public IActionResult Clientes()
+        [HttpGet("ListarClientes")]
+        public IActionResult ListarClientes()
         {
 
-            return View("Clientes");
+            return View("ListarClientes");
         }
 
-        [HttpGet("clientesCadastrados")]
-        public dynamic ListarClientes()
+        [HttpGet("Cliente")]
+        public dynamic Cliente()
         {
-            return _services.ListarClientes();
+            return View("Cliente");
+
         }
+
+        [HttpGet("BuscarCliente")]
+        public dynamic BuscarCliente(int codigo)
+        {
+            return _services.BuscarCliente(codigo);
+            
+            
+        }
+
+        [HttpGet("ListarClientesCadastrados")]
+        public dynamic ListarClientesCadastrados()
+        {
+            return _services.ListarClientesCadastrados();
+        }
+
+
 
         //[HttpPost("CadastrarCliente")]
         //public string CadastrarCliente([FromForm] ClienteViewModel cliente)
@@ -56,3 +75,4 @@ namespace Silas.Web.Controllers
 
     }
 }
+

@@ -9,6 +9,7 @@ namespace Silas.Web.Controllers
     {
         AuthService _authService;
 
+
         public AuthenticationController()
         {
             _authService = new AuthService();
@@ -20,9 +21,12 @@ namespace Silas.Web.Controllers
         {
             var response = _authService.Authentication(login);
             if (response.Authorized)
-               return RedirectToAction("Index", "Clientes", new { accessToken = response.AccessToken });
-           return RedirectToAction("Login", "Login", new { response = "Fail" });
+                return RedirectToAction("Index", "Clientes", new { accessToken = response.AccessToken });
+            return RedirectToAction("Login", "Login", new { response = "Fail" });
 
         }
+
+
+
     }
 }

@@ -27,7 +27,7 @@ function BuscarCliente() {
 var KTDatatable = function () {
     var load = function () {
         var Array = JSON.parse(jsonResponse);
-        var datatable = $('#kt_datatable').KTDatatable({
+        var datatable = $('#Cliente').KTDatatable({
             // datasource definition
             data: {
                 type: 'local',

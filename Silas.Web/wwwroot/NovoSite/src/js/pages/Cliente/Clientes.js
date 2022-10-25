@@ -54,7 +54,7 @@ var KTDatatable = function () {
                 //},
                 textAlign: 'center',
                 template: function (row) {
-                    return '<a href="javascript:Cliente(' + [row.codigo] + ')[0]">' + [row.codigo] + '</a>';
+                    return '<a href="javascript:buscarCliente(' + [row.codigo] + ')[0]">' + [row.codigo] + '</a>';
                 }
             }, {
                 field: 'razaoSocial',
@@ -104,14 +104,8 @@ var KTDatatable = function () {
 
 
 
-//function buscarCliente(codigo) {
-//    window.location.href = "/Clientes/BuscarCliente?codigo=" + codigo;
-//    
-//}
-
-function Cliente(codigo) {
-    /*window.location.href = "/Clientes/BuscarCliente?codigo=" + codigo;*/
-    window.location.href = "/Clientes/Cliente";
+function buscarCliente(codigo) {
+    window.location.href = "/Clientes/Cliente?codigo=" + codigo;
     
 }
 

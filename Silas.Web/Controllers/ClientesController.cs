@@ -57,7 +57,6 @@ namespace Silas.Web.Controllers
         {
             return _services.BuscarCliente(codigo);
             
-            
         }
 
         [HttpGet("ListarClientesCadastrados")]

@@ -25,5 +25,18 @@ namespace Repository
             _context.SaveChanges();
             return true;
         }
+
+        public async Task<HashSet<Cliente>> GetByCode(int code)
+        {
+
+            var cliente = (from l in _db.Cliente where l.Codigo == code select l).AsEnumerable().ToHashSet();
+            return cliente;
+
+        }
+        public async Task<HashSet<HistoricoCliente>> GetRegistro(Guid id)
+        {
+            var result = (from l in _db.HistoricoCliente where l.ClienteId == id select l).AsEnumerable().ToHashSet();
+            return result;
+        }
     }
 }

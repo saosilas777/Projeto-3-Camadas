@@ -12,6 +12,7 @@ namespace Silas.API.Models
         public string Estado { get; set; }
         public bool IsActive { get; set; }
         public ContatoModels Contato { get; set; }
+        public HistoricoClienteModel HistoricoCliente { get; set; }
 
 
     }

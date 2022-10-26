@@ -97,11 +97,11 @@ namespace Silas.API.Controllers
         [HttpPost("NovoRegistroDeContato")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> AddRegistro([FromBody] HistoricoClienteModel registro)
+        public async Task<object> AddRegistro([FromBody] HistoricoClienteModel registro, int codigo)
         {
             try
             {
-                var newRegistro = _clienteServices.AddRegistro(registro);
+                var newRegistro = _clienteServices.AddRegistro(registro, codigo);
                 return await Task.FromResult(newRegistro);
             }
             catch (Exception ex)

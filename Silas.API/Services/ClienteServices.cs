@@ -1,5 +1,6 @@
 ﻿using Data.Context;
 using Domain.Entity;
+using Microsoft.Win32;
 using Repository;
 using Silas.API.Models;
 using System;
@@ -101,12 +102,23 @@ namespace Silas.API.Services
             var _cliente = _clienteRepository.GetByCode(code).Result.FirstOrDefault();
             ICollection<TelefonesModel> tels = new List<TelefonesModel>();
             ICollection<EmailsModel> emails = new List<EmailsModel>();
+            HistoricoClienteModel registros = new HistoricoClienteModel();
 
-            tels.Add(new TelefonesModel { Telefone = "11999999999" });
-            tels.Add(new TelefonesModel { Telefone = "11999999998" });
 
-            emails.Add(new EmailsModel { Email = "bbb@contoso.com" });
-            emails.Add(new EmailsModel { Email = "aaa@contoso.com" });
+            var telefones = _telefoneRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id);
+            var mails = _emailsRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id);
+            var reg = _historicoRepository.GetRegistro(_cliente.Id);
+
+            tels.Add(new TelefonesModel { Telefone = telefones.FirstOrDefault().Telefone, IsActive = true });
+            emails.Add(new EmailsModel { Email = mails.FirstOrDefault().Email, IsActive = true });
+
+            registros.ClienteID = reg.Result.FirstOrDefault().ClienteId;
+            registros.Data = reg.Result.FirstOrDefault().Data;
+            registros.RegistroDeContato = reg.Result.FirstOrDefault().RegistroDeContato;
+
+
+
+
 
             var clienteModel = new ClienteModels
             {
@@ -120,7 +132,15 @@ namespace Silas.API.Services
                 {
                     Email = emails,
                     Telefone = tels,
+                },
+                HistoricoCliente = new HistoricoClienteModel
+                {
+                     ClienteID = registros.ClienteID,
+                     Data = registros.Data,
+                     RegistroDeContato = registros.RegistroDeContato,
                 }
+                
+                
             };
 
             return clienteModel;
@@ -157,9 +177,9 @@ namespace Silas.API.Services
 
 
         }
-        public string AddRegistro(HistoricoClienteModel resgistro)
+        public string AddRegistro(HistoricoClienteModel resgistro, int codigo)
         {
-            var cliente = _clienteRepository.GetAll().Result.Where(x => x.Id == resgistro.ClienteID).FirstOrDefault();
+            var cliente = _clienteRepository.GetAll().Result.Where(x => x.Codigo == codigo).FirstOrDefault();
             HistoricoCliente _registro = new HistoricoCliente { ClienteId = cliente.Id, Data = DateTime.Now, RegistroDeContato = resgistro.RegistroDeContato, IsActive = true };
             _historicoRepository.Add(_registro);
 

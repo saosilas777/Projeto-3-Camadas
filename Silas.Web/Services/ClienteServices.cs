@@ -25,16 +25,21 @@ namespace Silas.Web.Services
         public dynamic Cliente(int codigo)
         {
             var result = JsonConvert.DeserializeObject<ClienteViewModel>(BuscarCliente(codigo));
-
+            var result2 = result.Contato.Email[0];
             var avm = new ApplicationViewModel
             {
                 ClienteViewModel = new ClienteViewModel
                 {
+                    
                     Codigo = codigo.ToString(),
                     RazaoSocial = result.RazaoSocial,
                     Bairro = result.Bairro,
                     Cidade = result.Cidade,
-                    Estado = result.Estado
+                    Estado = result.Estado,
+                    Contato = result.Contato,
+                    HistoricoCliente = result.HistoricoCliente,
+
+
                 }
             };
             return avm;

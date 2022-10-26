@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Silas.API.Models
+namespace Silas.Web.Models
 {
     public class EmailsModel
     {

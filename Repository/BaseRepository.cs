@@ -34,6 +34,8 @@ namespace Repository
             GC.Collect();
         }
 
+        
+
         public async Task<IQueryable<TData>> GetAll<TData>() where TData : Base
         {
             DbSet<TData> dbset = _db.Set<TData>();

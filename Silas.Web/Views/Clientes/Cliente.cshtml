@@ -6,6 +6,7 @@
     var cidade = @Model.ClienteViewModel.Cidade;
     var estado = @Model.ClienteViewModel.Estado;
     var telefone = @Model.ClienteViewModel.Contato.Telefone.FirstOrDefault().Telefone;
+    var telefone2 = "11999995555";
     var email = @Model.ClienteViewModel.Contato.Email.FirstOrDefault().Email;
     var data = Model.ClienteViewModel.HistoricoCliente.Data.ToString();
     var registro = Model.ClienteViewModel.HistoricoCliente.RegistroDeContato.ToString();
@@ -16,9 +17,8 @@
 <style>
     .botao {
         text-align: center;
-        overflow:auto;
+        overflow: auto;
         float: right;
-       
     }
 </style>
 
@@ -62,12 +62,14 @@
                         <output class="form-control" type="text" id="example-tel-input" name="estado">@estado</output>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" id="telefone">
                     <label for="example-password-input" class="col-2 col-form-label">Telefone</label>
                     <div class="col-10">
                         <output class="form-control" type="number" id="example-password-input" name="telefone">@telefone</output>
                     </div>
                 </div>
+                
+                <div class="col-1 btn btn-bg-dark btn-text-light" type="button" onclick="adcCampo()">Telefone</div>
                 <div class="form-group row">
                     <label for="example-number-input" class="col-2 col-form-label">Email</label>
                     <div class="col-10">
@@ -96,3 +98,4 @@
     </div>
 </div>
 <script src="~/novosite/src/js/pages/cliente/buscarcliente.js"></script>
+<script src="~/novosite/src/js/pages/cliente/adccampo.js"></script>

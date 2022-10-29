@@ -1,11 +1,10 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
-namespace Silas.API.Models
+namespace Silas.Web.Models
 {
     public class HistoricoClienteModel
     {
-        public Guid ClienteID { get; set; }
-        public DateTime Data { get; set; }
-        public string RegistroDeContato { get; set; }
+        public ICollection<HistoricoContatoModel> Historico { get; set; }
+        public ICollection<HistoricoCompraModel> Compra { get; set; }
     }
 }

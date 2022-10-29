@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Silas.API.Models
 {
-    public class ContatoModels
+    public class ContatoModel
     {
         public ICollection<TelefonesModel> Telefone { get; set; }
 

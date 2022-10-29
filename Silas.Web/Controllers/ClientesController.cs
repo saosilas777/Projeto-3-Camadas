@@ -9,6 +9,7 @@ using System;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 using Silas.Web.Models;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Silas.Web.Controllers
 {
@@ -27,6 +28,14 @@ namespace Silas.Web.Controllers
         {
 
             return View("Index");
+        }
+        [HttpGet("HistoricoCliente")]
+        public IActionResult HistoricoCliente(int codigo)
+        { 
+            
+            var avm = _services.Cliente(codigo);
+            return View("HistoricoCliente", avm);
+
         }
 
         [HttpGet("CadastroCliente")]
@@ -54,9 +63,9 @@ namespace Silas.Web.Controllers
         }
 
         [HttpGet("BuscarCliente")]
-        public dynamic BuscarCliente(string codigo)
+        public dynamic BuscarCliente(int codigo)
         {
-            return _services.BuscarCliente(int.Parse(codigo));
+            return _services.BuscarCliente(codigo);
 
         }
 
@@ -64,6 +73,12 @@ namespace Silas.Web.Controllers
         public dynamic ListarClientesCadastrados()
         {
             return _services.ListarClientesCadastrados();
+        }
+
+        [HttpPost("Cadastrar")]
+        public IActionResult Cadastrar([FromForm] ClienteViewModel cliente)
+        {
+            return _services.Cadastro(cliente);
         }
 
 

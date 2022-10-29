@@ -42,6 +42,10 @@ var KTDatatable = function () {
             // column sorting
             sortable: true,
             pagination: true,
+            search: {
+                input: $('#kt_datatable_search_query'),
+                key: 'generalSearch'
+            },
 
             // columns definition
             columns: [{
@@ -70,6 +74,7 @@ var KTDatatable = function () {
                 title: 'Estado',
             }, {
                 field: 'isActive',
+                type: 'boolean',
                 width: 100,
                 title: 'Status',
                 autoHide: false,
@@ -89,9 +94,12 @@ var KTDatatable = function () {
                 },
             }],
         });
+
         $('#kt_datatable_search_level').on('change', function () {
-            datatable.search($(this).val().toLowerCase(), 'isActive');
+            datatable.search($(this).val().toLowerCase(), 'type');
         });
+        // $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
+        $('#kt_datatable_search_type').selectpicker();
 
     };
     return {
@@ -106,7 +114,7 @@ var KTDatatable = function () {
 
 function buscarCliente(codigo) {
     window.location.href = "/Clientes/Cliente?codigo=" + codigo;
-    
+       
 }
 
 initDOM();

@@ -3,7 +3,7 @@
     /// <summary>
     /// Modelo de autenticação
     /// </summary>
-    public class AuthenticationModels
+    public class AuthenticationModel
     {
         
         public string Nome { get; set; }

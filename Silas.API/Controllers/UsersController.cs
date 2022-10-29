@@ -28,7 +28,7 @@ namespace Silas.API.Controllers
         [HttpPost("Create")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> Create([FromBody] UserModels user)
+        public async Task<object> Create([FromBody] UserModel user)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace Silas.API.Controllers
         }
 
         [HttpPut("UpDate")]
-        public async Task<object> Update(UserModels user)
+        public async Task<object> Update(UserModel user)
         {
             _userService.UpDate(user);
             return await Task.FromResult(user);
@@ -60,7 +60,7 @@ namespace Silas.API.Controllers
         [HttpPut("ChangingRules")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> ChangeScope(ScopeAndRoleModels user)
+        public async Task<object> ChangeScope(ScopeAndRoleModel user)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Silas.API.Controllers
         [HttpPut("ChangingPassword")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> ChangingPassword(ChangePasswordModels user)
+        public async Task<object> ChangingPassword(ChangePasswordModel user)
         {
             try
             {

@@ -5,14 +5,24 @@
     var bairro = @Model.ClienteViewModel.Bairro;
     var cidade = @Model.ClienteViewModel.Cidade;
     var estado = @Model.ClienteViewModel.Estado;
-    var telefone = @Model.ClienteViewModel.Contato.Telefone.FirstOrDefault().Telefone;
-    var telefone2 = "11999995555";
-    var email = @Model.ClienteViewModel.Contato.Email.FirstOrDefault().Email;
-    var data = Model.ClienteViewModel.HistoricoCliente.Data.ToString();
-    var registro = Model.ClienteViewModel.HistoricoCliente.RegistroDeContato.ToString();
+    var telefone = @Model.ClienteViewModel.Contato.Telefone;
+    var email = @Model.ClienteViewModel.Contato.Email;
+    var historicos = Model.ClienteViewModel.HistoricoCliente.Historico;
+    int count = 0;
+
+    var hist = "";
+    var data = "";
+
+    if (historicos.Count > 0)
+    {
+        hist = historicos.FirstOrDefault().RegistroDeContato;
+        data = historicos.FirstOrDefault().Data.ToShortDateString();
+    }
+
+
 }
 
-<input hidden id="codigoCliente" value="@Model.ClienteViewModel.Codigo" />
+
 
 <style>
     .botao {
@@ -62,40 +72,100 @@
                         <output class="form-control" type="text" id="example-tel-input" name="estado">@estado</output>
                     </div>
                 </div>
-                <div class="form-group row" id="telefone">
-                    <label for="example-password-input" class="col-2 col-form-label">Telefone</label>
-                    <div class="col-10">
-                        <output class="form-control" type="number" id="example-password-input" name="telefone">@telefone</output>
-                    </div>
-                </div>
-                
-                <div class="col-1 btn btn-bg-dark btn-text-light" type="button" onclick="adcCampo()">Telefone</div>
-                <div class="form-group row">
-                    <label for="example-number-input" class="col-2 col-form-label">Email</label>
-                    <div class="col-10">
-                        <output class="form-control" type="email" id="example-number-input" name="email">@email</output>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-number-input" class="col-2 col-form-label ">Historico</label>
-                    <div class="col-10">
-                        <output class="form-control" type="text" id="example-text-input" name="historico">@registro</output>
-                        <div>
-                            <a class="float-right col-1 btn btn-bg-dark btn-text-light" href="http://google.com">Historico</a>
+
+                @foreach (var i in telefone)
+                {
+                    string label = "Telefone";
+                    if (count > 0)
+                    {
+                        label += " " + (count + 1);
+                    }
+
+                    var _name = "telefone-" + count.ToString();
+
+                    <div class="form-group row" id="telefone">
+                        <label for="example-password-input" class="col-2 col-form-label">@label</label>
+                        <div class="col-10">
+                            <output class="form-control" type="number" id="@_name" name="@_name">@i.Telefone</output>
                         </div>
+                    </div>
+                    count++;
+                }
+                @{
+                    count = 0;
+                }
+                @foreach (var i in email)
+                {
+                    string label = "Email";
+                    if (count > 0)
+                    {
+                        label += " " + (count + 1);
+                    }
 
+
+                    var _name = "email-" + count.ToString();
+
+                    <div class="form-group row" id="email">
+                        <label for="example-password-input" class="col-2 col-form-label">@label</label>
+                        <div class="col-10">
+                            <output class="form-control" type="number" id="@_name" name="@_name">@i.Email</output>
+                        </div>
+                    </div>
+                    count++;
+                }
+                @{
+                    count = 0;
+                }
+
+                @if (historicos.Count > 0)
+                {
+                    <div class="form-group row">
+                        <label for="example-number-input" class="col-2 col-form-label ">Historico</label>
+                        <div class="col-10">
+                            <output class="form-control" type="text" id="example-text-input" id="historico" name="historico">@hist</output>
+
+                        </div>
+                    </div>
+                    <div hidden class="form-group row">
+                        <label for="example-number-input" class="col-2 col-form-label">Data</label>
+                        <div class="col-10">
+                            <output class="form-control" type="date" id="example-date-input" id="data" name="@data"></output>
+                        </div>
                     </div>
 
-                </div>
+                }
+
+                @foreach (var x in historicos)
+                {
+
+                    if (count < 1)
+                    {
+                        <div class="form-group row">
+                            <a class="float-right col-1 btn btn-bg-dark btn-text-light" href="@Url.Action("HistoricoCliente","Clientes",new {codigo = codigo})">Historico</a>
+                        </div>
+                    }
+                    count++;
+
+                    @* @foreach (var item in historicos)
+                {
+                int count = 1;
+                var _name = "Registro * " + count.ToString() + " *";
                 <div class="form-group row">
-                    <label for="example-number-input" class="col-2 col-form-label">Data</label>
-                    <div class="col-10">
-                        <output class="form-control" type="date" id="example-date-input" name="data">@data</output>
-                    </div>
+                <label for="example-number-input" class="col-2 col-form-label ">Historico</label>
+                <div class="col-10">
+                <output class="form-control" type="text" id="example-text-input" id="@_name" name="@_name">@item.RegistroDeContato</output>
+
                 </div>
+                </div>
+
+                count++;
+
+                }*@
+
+
+                }
+
             </div>
         </form>
     </div>
 </div>
-<script src="~/novosite/src/js/pages/cliente/buscarcliente.js"></script>
-<script src="~/novosite/src/js/pages/cliente/adccampo.js"></script>

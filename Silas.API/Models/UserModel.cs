@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public class UserModels
+    public class UserModel
     {
         public string UserName { get; set; }
         

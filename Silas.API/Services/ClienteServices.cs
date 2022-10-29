@@ -5,6 +5,7 @@ using Repository;
 using Silas.API.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,7 +41,7 @@ namespace Silas.API.Services
 
         #region PUBLIC
 
-        public string Create(ClienteModels cliente)
+        public string Create(ClienteModel cliente)
         {
             if (VerifyCliente(cliente.Codigo))
                 throw new Exception("Cliente já possui cadastro!");
@@ -102,25 +103,34 @@ namespace Silas.API.Services
             var _cliente = _clienteRepository.GetByCode(code).Result.FirstOrDefault();
             ICollection<TelefonesModel> tels = new List<TelefonesModel>();
             ICollection<EmailsModel> emails = new List<EmailsModel>();
-            HistoricoClienteModel registros = new HistoricoClienteModel();
+            ICollection<HistoricoContatoModel> registrosContato = new List<HistoricoContatoModel>();
 
 
             var telefones = _telefoneRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id);
             var mails = _emailsRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id);
-            var reg = _historicoRepository.GetRegistro(_cliente.Id);
+            var reg = _historicoRepository.GetRegistro(_cliente.Id).Result.Where(x => x.ClienteId == _cliente.Id);
 
-            tels.Add(new TelefonesModel { Telefone = telefones.FirstOrDefault().Telefone, IsActive = true });
-            emails.Add(new EmailsModel { Email = mails.FirstOrDefault().Email, IsActive = true });
+            foreach (var tel in telefones)
+            {
+                tels.Add(new TelefonesModel { Telefone = tel.Telefone, IsActive = true });
 
-            registros.ClienteID = reg.Result.FirstOrDefault().ClienteId;
-            registros.Data = reg.Result.FirstOrDefault().Data;
-            registros.RegistroDeContato = reg.Result.FirstOrDefault().RegistroDeContato;
+            }
+
+            foreach (var mail in mails)
+            {
+                emails.Add(new EmailsModel { Email = mail.Email, IsActive = true });
+
+            }
 
 
+            foreach (var x in reg)
+            {
+                registrosContato.Add(new HistoricoContatoModel { ClienteID = x.ClienteId, Data = x.Data, RegistroDeContato = x.RegistroDeContato });
+
+            }
 
 
-
-            var clienteModel = new ClienteModels
+            var clienteModel = new ClienteModel
             {
                 Bairro = _cliente.Bairro,
                 Cidade = _cliente.Cidade,
@@ -128,16 +138,15 @@ namespace Silas.API.Services
                 Estado = _cliente.Estado,
                 RazaoSocial = _cliente.RazaoSocial,
                 IsActive = _cliente.IsActive,
-                Contato = new ContatoModels
+                Contato = new ContatoModel
                 {
                     Email = emails,
                     Telefone = tels,
                 },
                 HistoricoCliente = new HistoricoClienteModel
                 {
-                     ClienteID = registros.ClienteID,
-                     Data = registros.Data,
-                     RegistroDeContato = registros.RegistroDeContato,
+                    Historico = registrosContato,
+                    
                 }
                 
                 
@@ -177,7 +186,7 @@ namespace Silas.API.Services
 
 
         }
-        public string AddRegistro(HistoricoClienteModel resgistro, int codigo)
+        public string AddRegistro(HistoricoContatoModel resgistro, int codigo)
         {
             var cliente = _clienteRepository.GetAll().Result.Where(x => x.Codigo == codigo).FirstOrDefault();
             HistoricoCliente _registro = new HistoricoCliente { ClienteId = cliente.Id, Data = DateTime.Now, RegistroDeContato = resgistro.RegistroDeContato, IsActive = true };
@@ -200,6 +209,18 @@ namespace Silas.API.Services
             _telefoneRepository.SaveChanges();
             return "Numero(s) cadastrado";
         }
+        public string AddEmail(string[] email, Guid id)
+        {
+            ICollection<Emails> _email = new List<Emails>();
+            foreach (string mail in email)
+            {
+                _email.Add(new Emails { ClienteId = id, Email = mail, IsActive = true });
+            }
+
+            _emailsRepository.AddRange(_email);
+            _emailsRepository.SaveChanges();
+            return "Email(s) cadastrado";
+        }
 
 
         #endregion
@@ -215,7 +236,7 @@ namespace Silas.API.Services
             return true;
 
         }
-        private bool Validate(ClienteModels cliente)
+        private bool Validate(ClienteModel cliente)
         {
             if (string.IsNullOrEmpty(cliente.Codigo.ToString().Trim()))
                 throw new Exception("O campo código não pode estar vazio");

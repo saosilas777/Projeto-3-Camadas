@@ -1,9 +1,15 @@
-﻿<!--begin::Card-->
+﻿@model ApplicationViewModel
+@{
+    var codigo = @Model.ClienteViewModel.Codigo;
+}
+<input hidden id="codigoCliente" value="@Model.ClienteViewModel.Codigo"/>
+
+<!--begin::Card-->
 <div class="card card-custom">
 	<div class="card-header flex-wrap border-0 pt-6 pb-0">
 		<div class="card-title">
 			<h3 class="card-label">
-				Sua lista de clientes
+				Cliente: @codigo
 				@*<span class="d-block text-muted pt-2 font-size-sm">Initialized from remote json file</span>*@
 			</h3>
 		</div>
@@ -111,12 +117,12 @@
 								<label class="mr-3 mb-0 d-none d-md-block">Status:</label>
 								<select class="form-control" id="kt_datatable_search_level">
 									<option value="">All</option>
-									<option value="true">Active</option>
-									<option value="false">Inactive</option>
+									<option value=1>Active</option>
+									<option value=2>Inactive</option>
 								</select>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 				<div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
@@ -131,5 +137,6 @@
 		<!--end: Datatable-->
 	</div>
 </div>
+
 <!--end::Card-->
-<script src="~/novosite/src/js/pages/Cliente/clientes.js"></script>
+<script src="~/novosite/src/js/pages/cliente/historico.js"></script>

@@ -1,6 +1,6 @@
 ﻿namespace Silas.API.Models
 {
-    public class ScopeAndRoleModels
+    public class ScopeAndRoleModel
     {
         public string UserName { get; set; }
         public int Scope { get; set; }

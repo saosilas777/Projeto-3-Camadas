@@ -20,7 +20,7 @@ namespace Silas.API.Services
             _usersRepository = new UsersRepository(_users);
             authenticationService = new Authentication.Services.AuthenticationService();
         }
-        public IJWTAuth AuthenticationUser(AuthenticationModels user)
+        public IJWTAuth AuthenticationUser(AuthenticationModel user)
         {
             if (string.IsNullOrEmpty(user.Nome) || string.IsNullOrEmpty(user.Senha))
                 throw new Exception("Usuario e senha não podem estar vazios");

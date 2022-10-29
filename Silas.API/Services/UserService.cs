@@ -40,7 +40,7 @@ namespace Silas.API.Services
         #region PUBLIC
 
         #region Create
-        public string Create(UserModels user)
+        public string Create(UserModel user)
         {
             if (VerifyUser(user.UserName))
                 throw new Exception("User already exists on DataBase");
@@ -67,7 +67,7 @@ namespace Silas.API.Services
 
         #region UpDate
 
-        public bool UpDate(UserModels user)
+        public bool UpDate(UserModel user)
         {
             if (!VerifyUser(user.UserName))
                 throw new Exception("User not exists on database");
@@ -83,7 +83,7 @@ namespace Silas.API.Services
         #region Changing Password
 
         //Method to change a Password of user
-        public bool ChangingPassword(ChangePasswordModels user)
+        public bool ChangingPassword(ChangePasswordModel user)
         {
             if (!VerifyUser(user.UserName))
                 throw new Exception("User not exists on database");
@@ -137,7 +137,7 @@ namespace Silas.API.Services
         #region ChangeScopeAndRole
 
         //Method to change a Scope of user
-        public bool ChangingScopeAndRole(ScopeAndRoleModels user)
+        public bool ChangingScopeAndRole(ScopeAndRoleModel user)
         {
             if (!VerifyUser(user.UserName))
                 throw new Exception("User not exists on database");
@@ -207,7 +207,7 @@ namespace Silas.API.Services
 
         #region Validates
 
-        private bool Validate(UserModels user)
+        private bool Validate(UserModel user)
         {
             if (string.IsNullOrEmpty(user.UserName.Trim()))
                 throw new Exception("Name field cannot be empty");

@@ -28,7 +28,7 @@ namespace Silas.API.Controllers
         [HttpPost("Create")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> Create([FromBody] ClienteModels cliente)
+        public async Task<object> Create([FromBody] ClienteModel cliente)
         {
             try
             {
@@ -97,12 +97,28 @@ namespace Silas.API.Controllers
         [HttpPost("NovoRegistroDeContato")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> AddRegistro([FromBody] HistoricoClienteModel registro, int codigo)
+        public async Task<object> AddRegistro([FromBody] HistoricoContatoModel registro, int codigo)
         {
             try
             {
                 var newRegistro = _clienteServices.AddRegistro(registro, codigo);
                 return await Task.FromResult(newRegistro);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+        }
+
+        [HttpGet("RegistroContato")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 500)]
+        public async Task<object> RegistroContato(int codigo)
+        {
+            try
+            {
+                return await _clienteServices.GetByCode(codigo);
             }
             catch (Exception ex)
             {
@@ -118,6 +134,15 @@ namespace Silas.API.Controllers
         public async Task<object> AddTelefone(string[] telefone, Guid id)
         {
             var result = _clienteServices.AddTelefone(telefone, id);
+            return await Task.FromResult(result);
+        }
+
+        [HttpPost("AdicionarEmail")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 500)]
+        public async Task<object> AddEmail(string[] email, Guid id)
+        {
+            var result = _clienteServices.AddEmail(email, id);
             return await Task.FromResult(result);
         }
 

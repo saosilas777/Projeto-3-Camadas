@@ -4,7 +4,7 @@
         <name>Silas.API</name>
     </assembly>
     <members>
-        <member name="M:Silas.API.Controllers.AuthenticationController.Authentication(Silas.API.Models.AuthenticationModels)">
+        <member name="M:Silas.API.Controllers.AuthenticationController.Authentication(Silas.API.Models.AuthenticationModel)">
             <summary>
             Autentica usuário e gera token
             </summary>
@@ -32,17 +32,17 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="T:Silas.API.Models.AuthenticationModels">
+        <member name="T:Silas.API.Models.AuthenticationModel">
             <summary>
             Modelo de autenticação
             </summary>
         </member>
-        <member name="T:Silas.API.Models.UserModels">
+        <member name="T:Silas.API.Models.UserModel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Silas.API.Models.UserModels.Password">
+        <member name="P:Silas.API.Models.UserModel.Password">
             <summary>
             Password must have (special 1 caracter !@#$%* - 1 Upper caracter and  1 number caracter)
             </summary>

@@ -33,9 +33,9 @@ namespace Repository
             return cliente;
 
         }
-        public async Task<HashSet<HistoricoCliente>> GetRegistro(Guid id)
+        public async Task<HashSet<HistoricoCliente>> GetRegistro(Guid code)
         {
-            var result = (from l in _db.HistoricoCliente where l.ClienteId == id select l).AsEnumerable().ToHashSet();
+            var result = (from l in _db.HistoricoCliente where l.ClienteId == code select l).AsEnumerable().ToHashSet();
             return result;
         }
     }

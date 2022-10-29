@@ -1,6 +1,6 @@
 ﻿namespace Silas.API.Models
 {
-    public class ChangePasswordModels : Base
+    public class ChangePasswordModel : Base
     {
         public string NewPassword { get; set; }
 

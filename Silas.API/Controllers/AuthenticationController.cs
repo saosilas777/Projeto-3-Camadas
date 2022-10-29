@@ -18,7 +18,7 @@ namespace Silas.API.Controllers
         [HttpPost("Authentication")]
         [ProducesResponseType (typeof (IJWTAuth), 200)]
         [ProducesResponseType (typeof (string), 500)]
-        public async Task<object> Authentication([FromBody] AuthenticationModels user)
+        public async Task<object> Authentication([FromBody] AuthenticationModel user)
         {
             try
             {

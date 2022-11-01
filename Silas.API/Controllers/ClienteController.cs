@@ -24,15 +24,21 @@ namespace Silas.API.Controllers
             _clienteServices = new ClienteServices();
         }
 
+        #region Metodos
 
-        [HttpPost("Create")]
+        /// <summary>
+        /// Criação de um modelo de cliente
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns></returns>
+        [HttpPost("Cadastro")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> Create([FromBody] ClienteModel cliente)
+        public async Task<object> Cadastro([FromBody] ClienteModel cliente)
         {
             try
             {
-                var newCliente = _clienteServices.Create(cliente);
+                var newCliente = _clienteServices.Cadastro(cliente);
                 return await Task.FromResult(newCliente);
             }
             catch (Exception ex)
@@ -43,6 +49,10 @@ namespace Silas.API.Controllers
 
         }
 
+        /// <summary>
+        /// Lista de clientes cadastrados
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("ClientesCadastrados")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
@@ -59,6 +69,12 @@ namespace Silas.API.Controllers
 
 
         }
+
+        /// <summary>
+        /// Busca um cliente baseado em seu código de cliente
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
         [HttpGet("BuscarCliente")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
@@ -76,14 +92,20 @@ namespace Silas.API.Controllers
 
         }
 
+        /// <summary>
+        /// Registra a compra de um cliente baseado no seu codigo de cliente
+        /// </summary>
+        /// <param name="compra"></param>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
         [HttpPost("NovoRegistroDeCompra")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> AddCompra([FromBody] HistoricoCompraModel compra)
+        public async Task<object> AddCompra([FromBody] HistoricoCompraModel compra, int codigo)
         {
             try
             {
-                var newCompra = _clienteServices.AddCompra(compra);
+                var newCompra = _clienteServices.AddCompra(compra, codigo);
                 return await Task.FromResult(newCompra);
             }
             catch (Exception ex)
@@ -93,6 +115,13 @@ namespace Silas.API.Controllers
 
 
         }
+
+        /// <summary>
+        /// Registra o contato realizado em um cliente baseado no codigo de cliente
+        /// </summary>
+        /// <param name="registro"></param>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
 
         [HttpPost("NovoRegistroDeContato")]
         [ProducesResponseType(typeof(string), 200)]
@@ -111,7 +140,13 @@ namespace Silas.API.Controllers
 
         }
 
-        [HttpGet("RegistroContato")]
+
+        /// <summary>
+        /// Busca um registro de contato de um cliente com base em seu codigo
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        [HttpGet("BuscarRegistroContato")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
         public async Task<object> RegistroContato(int codigo)
@@ -128,41 +163,73 @@ namespace Silas.API.Controllers
 
         }
 
+        /// <summary>
+        /// Registra um ou mais telefones para cliente cadastrado com base no seu codigo
+        /// </summary>
+        /// <param name="telefone"></param>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+
         [HttpPost("AdicionarTelefone")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> AddTelefone(string[] telefone, Guid id)
+        public async Task<object> AddTelefone(string[] telefone, int codigo)
         {
-            var result = _clienteServices.AddTelefone(telefone, id);
+            var result = _clienteServices.AddTelefone(telefone, codigo);
             return await Task.FromResult(result);
         }
+
+        /// <summary>
+        /// Registra um ou mais emails para cliente cadastrado com base no seu codigo
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
 
         [HttpPost("AdicionarEmail")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> AddEmail(string[] email, Guid id)
+        public async Task<object> AddEmail(string[] email, int codigo)
         {
-            var result = _clienteServices.AddEmail(email, id);
+            var result = _clienteServices.AddEmail(email, codigo);
             return await Task.FromResult(result);
         }
 
-        [HttpPatch("ChangeTelefoneStatus")]
+        //TODO
+        //fazer o metodo desabilitar um telefone especifico
+
+        /// <summary>
+        /// Ativa ou inativa um telefone cadastrado com base no codigo do cliente
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <param name="isActive"></param>
+        /// <returns></returns>
+        [HttpPatch("MudarStatusTelefone")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> DisableTelefone(Guid id, bool isActive)
+        public async Task<object> DisableTelefone(int codigo, bool isActive)
         {
-            var result = _clienteServices.DisableTelefone(id, isActive);
+            var result = _clienteServices.DisableTelefone(codigo, isActive);
             return await Task.FromResult(result);
         }
 
-        [HttpPatch("ChangeEmailStatus")]
+        /// <summary>
+        /// Ativa ou inativa um email cadastrado com base no codigo do cliente
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <param name="isActive"></param>
+        /// <returns></returns>
+        [HttpPatch("MudarStatusEmail")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> DisableEmail(Guid id, bool isActive)
+        public async Task<object> DisableEmail(int codigo, bool isActive)
         {
-            var result = _clienteServices.DisableEmail(id, isActive);
+            var result = _clienteServices.DisableEmail(codigo, isActive);
             return await Task.FromResult(result);
         }
+        #endregion
+
+
 
     }
 }

@@ -18,6 +18,81 @@
             <param name="token"></param>
             <returns></returns>
         </member>
+        <member name="M:Silas.API.Controllers.ClienteController.Cadastro(Silas.API.Models.ClienteModel)">
+            <summary>
+            Criação de um modelo de cliente
+            </summary>
+            <param name="cliente"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.ClientesCadastrados">
+            <summary>
+            Lista de clientes cadastrados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.BuscarCliente(System.Int32)">
+            <summary>
+            Busca um cliente baseado em seu código de cliente
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.AddCompra(Silas.API.Models.HistoricoCompraModel,System.Int32)">
+            <summary>
+            Registra a compra de um cliente baseado no seu codigo de cliente
+            </summary>
+            <param name="compra"></param>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.AddRegistro(Silas.API.Models.HistoricoContatoModel,System.Int32)">
+            <summary>
+            Registra o contato realizado em um cliente baseado no codigo de cliente
+            </summary>
+            <param name="registro"></param>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.RegistroContato(System.Int32)">
+            <summary>
+            Busca um registro de contato de um cliente com base em seu codigo
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.AddTelefone(System.String[],System.Int32)">
+            <summary>
+            Registra um ou mais telefones para cliente cadastrado com base no seu codigo
+            </summary>
+            <param name="telefone"></param>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.AddEmail(System.String[],System.Int32)">
+            <summary>
+            Registra um ou mais emails para cliente cadastrado com base no seu codigo
+            </summary>
+            <param name="email"></param>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.DisableTelefone(System.Int32,System.Boolean)">
+            <summary>
+            Ativa ou inativa um telefone cadastrado com base no codigo do cliente
+            </summary>
+            <param name="codigo"></param>
+            <param name="isActive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silas.API.Controllers.ClienteController.DisableEmail(System.Int32,System.Boolean)">
+            <summary>
+            Ativa ou inativa um email cadastrado com base no codigo do cliente
+            </summary>
+            <param name="codigo"></param>
+            <param name="isActive"></param>
+            <returns></returns>
+        </member>
         <member name="M:Silas.API.Controllers.Persons.PersonsController.Create(Silas.Service.Persons.DTO.PersonDTO)">
             <summary>
             Create person method

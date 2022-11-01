@@ -49,12 +49,22 @@ namespace Silas.Web.Services
         {
 
 
-            string url = "https://localhost:5001/Cliente/Create";
+            string url = "https://localhost:5001/Cliente/Cadastro";
             ICollection<EmailsModel> emails = new List<EmailsModel>();
             ICollection<TelefonesModel> tels = new List<TelefonesModel>();
 
-            emails.Add(new EmailsModel { Email = cliente.Email, IsActive = true });
-            tels.Add(new TelefonesModel { Telefone = cliente.Telefone, IsActive = true });
+            foreach (var x in cliente.Email)
+            {
+                emails.Add(new EmailsModel { Email = x, IsActive = true });
+            }
+
+            foreach (var x in cliente.Telefone)
+            {
+                tels.Add(new TelefonesModel { Telefone = x, IsActive = true });
+            }
+
+
+            
 
 
             cliente.Contato = new ContatoModels

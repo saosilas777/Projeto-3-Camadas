@@ -1,0 +1,51 @@
+﻿@page
+@model Silas.Web.Views.Clientes.IndexModel
+
+
+<head>
+
+    <style>
+        body {
+            font-family: tahoma,arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef0f8;
+        }
+
+        #principal {
+            margin: 5px 50px 50px -150px;
+        }
+
+        h2 {
+            font-size: 25px;
+        }
+
+        p {
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="principal">
+        <img src="~/novosite/dist/assets/media/logos/Intersec6.png" width="400px" />
+    </div>
+    <div>
+        <h2>
+            Sucesso!
+        </h2>
+        <p>Cliente Cadastrado!</p>
+
+
+    </div>
+    <div>
+        <a class="float-right col-1 btn btn-bg-dark btn-text-light" href="@Url.Action("Index","Clientes")">Voltar ao início</a>
+    </div>
+    <div>
+        <a class="float-center col-1 btn btn-bg-dark btn-text-light" href="@Url.Action("CadastroCliente","Clientes")">Novo cadastro</a>
+    </div>
+
+</body>
+
+

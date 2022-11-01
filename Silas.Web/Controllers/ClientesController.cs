@@ -78,7 +78,8 @@ namespace Silas.Web.Controllers
         [HttpPost("Cadastrar")]
         public IActionResult Cadastrar([FromForm] ClienteViewModel cliente)
         {
-            return _services.Cadastro(cliente);
+            _services.Cadastro(cliente);
+            return View("ClienteCadastrado");
         }
 
 

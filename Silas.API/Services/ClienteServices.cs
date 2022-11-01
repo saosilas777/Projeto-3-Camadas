@@ -41,7 +41,7 @@ namespace Silas.API.Services
 
         #region PUBLIC
 
-        public string Create(ClienteModel cliente)
+        public string Cadastro(ClienteModel cliente)
         {
             if (VerifyCliente(cliente.Codigo))
                 throw new Exception("Cliente já possui cadastro!");
@@ -74,18 +74,20 @@ namespace Silas.API.Services
 
         }
 
-        public string DisableTelefone(Guid id, bool isActive)
+        public string DisableTelefone(int codigo, bool isActive)
         {
-            var _telefone = _telefoneRepository.GetAll().Result.Where(x => x.Id == id).FirstOrDefault();
+            var _cliente = _clienteRepository.GetByCode(codigo).Result.FirstOrDefault();
+            var _telefone = _telefoneRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id).FirstOrDefault();
             _telefone.IsActive = isActive;
             _telefoneRepository.Update(_telefone);
             if (_telefone.IsActive)
                 return "Telefone habilitado";
             return "Telefone desabilitado";
         }
-        public string DisableEmail(Guid id, bool isActive)
+        public string DisableEmail(int codigo, bool isActive)
         {
-            var _email = _emailsRepository.GetAll().Result.Where(x => x.Id == id).FirstOrDefault();
+            var _cliente = _clienteRepository.GetByCode(codigo).Result.FirstOrDefault();
+            var _email = _emailsRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id).FirstOrDefault();
             _email.IsActive = isActive;
             _emailsRepository.Update(_email);
             if (_email.IsActive)
@@ -154,31 +156,9 @@ namespace Silas.API.Services
 
             return clienteModel;
         }
-
-        //public async Task<object> GetByCode(int code)
-        //{
-        //    return await _clienteRepository.GetByCode(code);
-        //}
-        ////var _telefone = _telefoneRepository.GetAll().Result.Where(x => x.Id == _cliente.Id);
-        //Cliente cliente = new Cliente();
-        //Telefones tel = new Telefones();
-        //foreach (Cliente cl in _cliente.Result)
-        //{
-        //    if(cl.Codigo == code)
-        //    {
-        //         //= new Telefones { ClienteId = cl.Id, Telefone = cl.}
-        //        cliente = new Cliente { Codigo = cl.Codigo, Bairro = cl.Bairro.ToString(), Cidade = cl.Cidade.ToString(), Estado = cl.Estado.ToString(), Id = cl.Id, RazaoSocial = cl.RazaoSocial.ToString() };
-        //    }
-        //}
-        //return cliente;
-
-
-
-
-
-        public string AddCompra(HistoricoCompraModel compra)
+        public string AddCompra(HistoricoCompraModel compra, int codigo)
         {
-            var cliente = _clienteRepository.GetAll().Result.Where(x => x.Id == compra.ClienteID).FirstOrDefault();
+            var cliente = _clienteRepository.GetAll().Result.Where(x => x.Codigo == codigo).FirstOrDefault();
             HistoricoCompra _compra = new HistoricoCompra { ClienteId = cliente.Id, Data = compra.Data, Valor = compra.Valor, IsActive = true };
             _compraRepository.Add(_compra);
 
@@ -197,24 +177,26 @@ namespace Silas.API.Services
 
         }
 
-        public string AddTelefone(string[] telefone, Guid id)
+        public string AddTelefone(string[] telefone, int codigo)
         {
+            var _cliente = _clienteRepository.GetByCode(codigo).Result.FirstOrDefault();
             ICollection<Telefones> _telefones = new List<Telefones>();
             foreach (string numero in telefone)
             {
-                _telefones.Add(new Telefones { ClienteId = id, Telefone = numero, IsActive = true });
+                _telefones.Add(new Telefones {ClienteId = _cliente.Id, Telefone = numero, IsActive = true });
             }
 
             _telefoneRepository.AddRange(_telefones);
             _telefoneRepository.SaveChanges();
             return "Numero(s) cadastrado";
         }
-        public string AddEmail(string[] email, Guid id)
+        public string AddEmail(string[] email, int codigo)
         {
+            var _cliente = _clienteRepository.GetByCode(codigo).Result.FirstOrDefault();
             ICollection<Emails> _email = new List<Emails>();
             foreach (string mail in email)
             {
-                _email.Add(new Emails { ClienteId = id, Email = mail, IsActive = true });
+                _email.Add(new Emails { ClienteId = _cliente.Id, Email = mail, IsActive = true });
             }
 
             _emailsRepository.AddRange(_email);

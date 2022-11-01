@@ -62,7 +62,7 @@ var KTDatatable = function () {
                 }
             }, {
                 field: 'razaoSocial',
-                width: 350,
+                width: 200,
                 title: 'Razao Social',
             }, {
                 field: 'cidade',

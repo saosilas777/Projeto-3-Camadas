@@ -54,6 +54,12 @@ namespace Silas.Web.Controllers
 
             return View("ListarClientes");
         }
+        [HttpGet("ClienteUpdate")]
+        public IActionResult ClienteUpdate(int codigo)
+        {
+            var avm = _services.Cliente(codigo);
+            return View("ClienteUpdate",avm);
+        }
 
         [HttpGet("Cliente")]
         public dynamic Cliente(int codigo)
@@ -79,6 +85,13 @@ namespace Silas.Web.Controllers
         public IActionResult Cadastrar([FromForm] ClienteViewModel cliente)
         {
             _services.Cadastro(cliente);
+            return View("ClienteCadastrado");
+        }
+
+        [HttpPost("Atualizar")]
+        public IActionResult Atualizar([FromForm] ClienteViewModel cliente)
+        {
+            _services.Atualizar(cliente);
             return View("ClienteCadastrado");
         }
 

@@ -49,6 +49,24 @@ namespace Silas.API.Controllers
 
         }
 
+        [HttpPost("Atualizar")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 500)]
+        public async Task<object> Atualizar([FromBody] ClienteModel cliente)
+        {
+            try
+            {
+                var newCliente = _clienteServices.Atualizar(cliente);
+                return await Task.FromResult(newCliente);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+
+        }
+
         /// <summary>
         /// Lista de clientes cadastrados
         /// </summary>

@@ -45,6 +45,39 @@ namespace Silas.Web.Services
             return avm;
         }
 
+        public dynamic Atualizar(ClienteViewModel cliente)
+        {
+            string url = "https://localhost:5001/Cliente/Atualizar";
+            ICollection<EmailsModel> emails = new List<EmailsModel>();
+            ICollection<TelefonesModel> tels = new List<TelefonesModel>();
+
+            foreach (var x in cliente.Email)
+            {
+                emails.Add(new EmailsModel { Email = x, IsActive = true });
+            }
+
+            foreach (var x in cliente.Telefone)
+            {
+                tels.Add(new TelefonesModel { Telefone = x, IsActive = true });
+            }
+
+
+
+
+
+            cliente.Contato = new ContatoModels
+            {
+
+                Email = emails,
+                Telefone = tels
+            };
+
+
+
+            return HttpHelper.POST(url, JsonConvert.SerializeObject(cliente));
+
+        }
+
         public dynamic Cadastro(ClienteViewModel cliente)
         {
 

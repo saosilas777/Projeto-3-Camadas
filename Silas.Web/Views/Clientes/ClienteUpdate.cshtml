@@ -1,0 +1,138 @@
+﻿@model ApplicationViewModel
+@{
+    var codigo = @Model.ClienteViewModel.Codigo;
+    var razaoSocial = @Model.ClienteViewModel.RazaoSocial;
+    var bairro = @Model.ClienteViewModel.Bairro;
+    var cidade = @Model.ClienteViewModel.Cidade;
+    var estado = @Model.ClienteViewModel.Estado;
+    var telefone = @Model.ClienteViewModel.Contato.Telefone;
+    var email = @Model.ClienteViewModel.Contato.Email;
+    var historicos = Model.ClienteViewModel.HistoricoCliente.Historico;
+    int count = 0;
+
+    var hist = "";
+    var data = "";
+
+    if (historicos.Count > 0)
+    {
+        hist = historicos.FirstOrDefault().RegistroDeContato;
+        data = historicos.FirstOrDefault().Data.ToShortDateString();
+    }
+
+
+}
+
+
+
+<style>
+    .botao {
+        text-align: center;
+        overflow: auto;
+        float: right;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .btn1 {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+</style>
+
+<div id="Cliente">
+    <div class="card card-custom">
+        <div class="card-header">
+            <h3 class="card-title">
+                Dados do cliente
+            </h3>
+        </div>
+        <!--begin::Form-->
+        <form asp-action="Atualizar" asp-controller="Clientes" method="post">
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Código Cliente</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="codigo" name="Codigo" value="@codigo" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-2 col-form-label">Razão Social</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="razaoSocial" name="RazaoSocial" value="@razaoSocial">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-email-input" class="col-2 col-form-label">Bairro</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="bairro" name="Bairro" value="@bairro">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-url-input" class="col-2 col-form-label">Cidade</label>
+                    <div class="col-8">
+                        <input class="form-control" id="cidade" name="cidade" value="@cidade">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-tel-input" class="col-2 col-form-label">Estado</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-tel-input" name="estado" value="@estado">
+                    </div>
+                </div>
+                
+                @foreach (var i in telefone)
+                {
+                string label = "Telefone";
+                if (count > 0)
+                {
+                label += " " + (count + 1);
+                }
+
+                var _name = "telefone-" + count.ToString();
+
+                <div class="form-group row" id="telefone">
+                <label for="example-password-input" class="col-2 col-form-label">@label</label>
+                <div class="col-8">
+                <input class="form-control" type="text" id="@_name" name="Telefone" value="@i.Telefone">
+                </div>
+                </div>
+                count++;
+                }
+                @{
+                count = 0;
+                }
+                @foreach (var i in email)
+                {
+                string label = "Email";
+                if (count > 0)
+                {
+                label += " " + (count + 1);
+                }
+
+
+                var _name = "email-" + count.ToString();
+
+                <div class="form-group row" id="email">
+                <label for="example-password-input" class="col-2 col-form-label">@label</label>
+                <div class="col-8">
+                <input class="form-control" type="text" id="@_name" name="Email" value="@i.Email">
+                </div>
+                </div>
+                count++;
+                }
+                @{
+                count = 0;
+                }
+                <div class="col-10">
+                <button type="submit" class="btn btn-success mr-2" id="btn-submit">Salvar</button>
+                <button type="reset" class="btn btn-danger">Cancelar</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

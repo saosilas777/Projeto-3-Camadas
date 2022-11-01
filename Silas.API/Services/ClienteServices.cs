@@ -74,6 +74,44 @@ namespace Silas.API.Services
 
         }
 
+        public string Atualizar(ClienteModel cliente)
+        {
+            var _cliente = _clienteRepository.GetAll().Result.Where(x => x.Codigo == cliente.Codigo).FirstOrDefault();
+            var _tel = _telefoneRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id).ToList();
+            var _mail = _emailsRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id).ToList();
+            
+            _cliente.RazaoSocial = cliente.RazaoSocial;
+            _cliente.Bairro = cliente.Bairro;
+            _cliente.Cidade = cliente.Cidade;
+            _cliente.Estado = cliente.Estado;
+
+            List<Telefones> tels = new List<Telefones>();
+
+            foreach (var x in cliente.Contato.Telefone)
+            {
+                tels.Add(new Telefones { Telefone = x.Telefone });
+            }
+            _tel[0].Telefone = tels[0].Telefone;
+            _tel[1].Telefone = tels[1].Telefone;
+            _tel[2].Telefone = tels[2].Telefone;
+
+            List<Emails> emails = new List<Emails>();
+
+            foreach (var x in cliente.Contato.Email)
+            {
+                emails.Add(new Emails { Email = x.Email });
+            }
+
+            _mail[0].Email = emails[0].Email;
+            _mail[1].Email = emails[1].Email;
+            _mail[2].Email = emails[2].Email;
+
+
+            _context.SaveChanges();
+            return "Cliente Atualizado";
+            
+        }
+
         public string DisableTelefone(int codigo, bool isActive)
         {
             var _cliente = _clienteRepository.GetByCode(codigo).Result.FirstOrDefault();

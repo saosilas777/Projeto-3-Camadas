@@ -36,9 +36,8 @@
     }
 
     .btn1 {
-        margin-left: 25px;
-        margin-top: 0;
-        margin-bottom: 0;
+        margin-left: 20px;
+       
     }
 </style>
 
@@ -96,7 +95,7 @@
                     <div class="form-group row" id="telefone">
                         <label for="example-password-input" class="col-2 col-form-label">@label</label>
                         <div class="col-8">
-                            <output class="form-control" type="number" id="@_name" name="@_name">@i.Telefone</output>
+                            <output class="form-control" type="text" id="@_name" name="@_name">@i.Telefone</output>
                         </div>
                     </div>
                     count++;
@@ -118,7 +117,7 @@
                     <div class="form-group row" id="email">
                         <label for="example-password-input" class="col-2 col-form-label">@label</label>
                         <div class="col-8">
-                            <output class="form-control" type="number" id="@_name" name="@_name">@i.Email</output>
+                            <output class="form-control" type="text" id="@_name" name="@_name">@i.Email</output>
                         </div>
                     </div>
                     count++;
@@ -148,20 +147,12 @@
 
                         }
                     </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-dark text-light" style="display:inline-block">Alterar</button>
-
-                        <button type="button" class="btn1 btn btn-danger text-light">Deletar</button>
-
-                    </div>
-
-
-                    
-
                 }
+                </div>
+            <div class="form-group">
+                <a class="btn1 btn btn-dark text-light" href="@Url.Action("ClienteUpdate","Clientes",new {codigo = codigo})">Alterar</a>
 
-
-
+                <button type="button" class="btn1 btn btn-danger text-light">Deletar</button>
 
             </div>
         </form>

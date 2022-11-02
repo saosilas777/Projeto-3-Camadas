@@ -48,7 +48,12 @@ namespace Silas.API.Controllers
 
 
         }
-
+        
+        /// <summary>
+        /// Atualizar um ou todos os dados do cliente
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns></returns>
         [HttpPost("Atualizar")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]

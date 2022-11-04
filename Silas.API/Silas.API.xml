@@ -25,6 +25,13 @@
             <param name="cliente"></param>
             <returns></returns>
         </member>
+        <member name="M:Silas.API.Controllers.ClienteController.Atualizar(Silas.API.Models.ClienteModel)">
+            <summary>
+            Atualizar um ou todos os dados do cliente
+            </summary>
+            <param name="cliente"></param>
+            <returns></returns>
+        </member>
         <member name="M:Silas.API.Controllers.ClienteController.ClientesCadastrados">
             <summary>
             Lista de clientes cadastrados

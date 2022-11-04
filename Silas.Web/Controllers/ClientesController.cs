@@ -29,6 +29,7 @@ namespace Silas.Web.Controllers
 
             return View("Index");
         }
+
         [HttpGet("HistoricoCliente")]
         public IActionResult HistoricoCliente(int codigo)
         { 
@@ -95,13 +96,13 @@ namespace Silas.Web.Controllers
             return View("ClienteCadastrado");
         }
 
-
-
-        //[HttpPost("CadastrarCliente")]
-        //public string CadastrarCliente([FromForm] ClienteViewModel cliente)
+        //TODO
+        //[HttpGet("Delete")]
+        //public IActionResult Delete(string email)
         //{
+        //    var mail = _services.Email(email);
+        //    return View("Delete", mail);
         //}
-
     }
 }
 

@@ -72,6 +72,8 @@ namespace Silas.API.Controllers
 
         }
 
+
+
         /// <summary>
         /// Lista de clientes cadastrados
         /// </summary>

@@ -4,6 +4,7 @@ using Silas.Web.Helpers;
 using Silas.Web.Models.ViewModels;
 using Silas.Web.Models;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Silas.Web.Services
 {
@@ -78,6 +79,12 @@ namespace Silas.Web.Services
 
         }
 
+        public dynamic DeletarEmail(string email)
+        {
+            string url = "https://localhost:5001/Cliente/DeletarEmail";
+            return HttpHelper.POST(url, email);
+
+        }
         public dynamic Cadastro(ClienteViewModel cliente)
         {
 
@@ -111,6 +118,12 @@ namespace Silas.Web.Services
 
             return HttpHelper.POST(url, JsonConvert.SerializeObject(cliente));
 
+        }
+
+        public EmailsModel Email(string email)
+        {
+            var mail = new EmailsModel { Email = email, IsActive = true };
+            return mail;
         }
     }
 }

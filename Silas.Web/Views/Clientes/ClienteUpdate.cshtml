@@ -82,53 +82,53 @@
                         <input class="form-control" type="text" id="example-tel-input" name="estado" value="@estado">
                     </div>
                 </div>
-                
+
                 @foreach (var i in telefone)
                 {
-                string label = "Telefone";
-                if (count > 0)
-                {
-                label += " " + (count + 1);
-                }
+                    string label = "Telefone";
+                    if (count > 0)
+                    {
+                        label += " " + (count + 1);
+                    }
 
-                var _name = "telefone-" + count.ToString();
+                    var _name = "telefone-" + count.ToString();
 
-                <div class="form-group row" id="telefone">
-                <label for="example-password-input" class="col-2 col-form-label">@label</label>
-                <div class="col-8">
-                <input class="form-control" type="text" id="@_name" name="Telefone" value="@i.Telefone">
-                </div>
-                </div>
-                count++;
+                    <div class="form-group row" id="telefone">
+                        <label for="example-password-input" class="col-2 col-form-label">@label</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="@_name" name="Telefone" value="@i.Telefone" maxlength="11">
+                        </div>
+                    </div>
+                    count++;
                 }
                 @{
-                count = 0;
+                    count = 0;
                 }
                 @foreach (var i in email)
                 {
-                string label = "Email";
-                if (count > 0)
-                {
-                label += " " + (count + 1);
-                }
+                    string label = "Email";
+                    if (count > 0)
+                    {
+                        label += " " + (count + 1);
+                    }
 
 
-                var _name = "email-" + count.ToString();
+                    var _name = "email-" + count.ToString();
 
-                <div class="form-group row" id="email">
-                <label for="example-password-input" class="col-2 col-form-label">@label</label>
-                <div class="col-8">
-                <input class="form-control" type="text" id="@_name" name="Email" value="@i.Email">
-                </div>
-                </div>
-                count++;
+                    <div class="form-group row" id="email">
+                        <label for="example-password-input" class="col-2 col-form-label">@label</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="@_name" name="Email" value="@i.Email">
+                        </div>
+                    </div>
+                    count++;
                 }
                 @{
-                count = 0;
+                    count = 0;
                 }
                 <div class="col-10">
-                <button type="submit" class="btn btn-success mr-2" id="btn-submit">Salvar</button>
-                <button type="reset" class="btn btn-danger">Cancelar</button>
+                    <button type="submit" class="btn btn-success mr-2" id="btn-submit">Salvar</button>
+                    <button type="reset" class="btn btn-danger">Cancelar</button>
                 </div>
 
             </div>

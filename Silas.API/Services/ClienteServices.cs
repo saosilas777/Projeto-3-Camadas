@@ -79,7 +79,7 @@ namespace Silas.API.Services
             var _cliente = _clienteRepository.GetAll().Result.Where(x => x.Codigo == cliente.Codigo).FirstOrDefault();
             var _tel = _telefoneRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id).ToList();
             var _mail = _emailsRepository.GetAll().Result.Where(x => x.ClienteId == _cliente.Id).ToList();
-            
+
             _cliente.RazaoSocial = cliente.RazaoSocial;
             _cliente.Bairro = cliente.Bairro;
             _cliente.Cidade = cliente.Cidade;
@@ -91,9 +91,20 @@ namespace Silas.API.Services
             {
                 tels.Add(new Telefones { Telefone = x.Telefone });
             }
-            _tel[0].Telefone = tels[0].Telefone;
-            _tel[1].Telefone = tels[1].Telefone;
-            _tel[2].Telefone = tels[2].Telefone;
+
+
+            for (int i = 0; i < tels.Count; i++)
+            {
+                if (tels[i].Telefone == null)
+                {
+                    _tel[i].Telefone = "";
+                }
+                else
+                {
+                    _tel[i].Telefone = tels[i].Telefone;
+                }
+
+            }
 
             List<Emails> emails = new List<Emails>();
 
@@ -102,14 +113,22 @@ namespace Silas.API.Services
                 emails.Add(new Emails { Email = x.Email });
             }
 
-            _mail[0].Email = emails[0].Email;
-            _mail[1].Email = emails[1].Email;
-            _mail[2].Email = emails[2].Email;
+            for (int i = 0; i < emails.Count; i++)
+            {
+                if (emails[i].Email == null)
+                {
+                    _mail[i].Email = "";
+                }
+                else
+                {
+                    _mail[i].Email = emails[i].Email;
+                }
 
+            }
 
             _context.SaveChanges();
             return "Cliente Atualizado";
-            
+
         }
 
         public string DisableTelefone(int codigo, bool isActive)
@@ -186,10 +205,10 @@ namespace Silas.API.Services
                 HistoricoCliente = new HistoricoClienteModel
                 {
                     Historico = registrosContato,
-                    
+
                 }
-                
-                
+
+
             };
 
             return clienteModel;
@@ -221,7 +240,7 @@ namespace Silas.API.Services
             ICollection<Telefones> _telefones = new List<Telefones>();
             foreach (string numero in telefone)
             {
-                _telefones.Add(new Telefones {ClienteId = _cliente.Id, Telefone = numero, IsActive = true });
+                _telefones.Add(new Telefones { ClienteId = _cliente.Id, Telefone = numero, IsActive = true });
             }
 
             _telefoneRepository.AddRange(_telefones);

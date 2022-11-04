@@ -14,10 +14,12 @@ function ClientesCadastrados() {
     $.get("/Clientes/BuscarCliente?codigo=" + codigo.value, function (data) {
         jsonResponse = JSON.parse(data);
         
+        
     }).done(function () {
         
         setTimeout(function () {
             jQuery(document).ready(function () {
+
                 historicoCliente = jsonResponse.historicoCliente.historico;
                 KTDatatable.init();
             });
@@ -33,8 +35,11 @@ function ClientesCadastrados() {
 var KTDatatable = function () {
     var load = function () {
         var Array = historicoCliente;
+        var date = 'data';
+       
         var datatable = $('#kt_datatable').KTDatatable({
             // datasource definition
+
             data: {
                 type: 'local',
                 source: Array,
@@ -50,6 +55,7 @@ var KTDatatable = function () {
             pagination: true,
 
             // columns definition
+            
             columns: [{
                 field: 'clienteID',
                 title: 'ID',
@@ -63,7 +69,8 @@ var KTDatatable = function () {
                     return '<a href="javascript:buscarCliente(' + [row.clienteID] + ')[0]">' + [row.clienteID] + '</a>';
                 }
             }, {
-                field: 'data',
+
+                field: date,
                 width: 300,
                 title: 'Data de Contato',
             }, {

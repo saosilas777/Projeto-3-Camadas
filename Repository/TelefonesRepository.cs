@@ -44,7 +44,7 @@ namespace Repository
 
         public void Delete(Telefones telefone)
         {
-            throw new NotImplementedException();
+            _context.Remove(telefone);
         }
 
         public void Update(Telefones telefone)

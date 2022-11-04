@@ -96,13 +96,21 @@ namespace Silas.Web.Controllers
             return View("ClienteCadastrado");
         }
 
-        //TODO
-        //[HttpGet("Delete")]
-        //public IActionResult Delete(string email)
-        //{
-        //    var mail = _services.Email(email);
-        //    return View("Delete", mail);
-        //}
+        [HttpGet("Delete")]
+        public IActionResult Delete(int codigo)
+        {
+            var avm = _services.Cliente(codigo);
+            return View("Delete", avm);
+        }
+
+
+        [HttpPost("Deletar")]
+        public IActionResult Deletar(ClienteViewModel cliente)
+        {
+            
+            _services.Delete(int.Parse(cliente.Codigo));
+            return View("Deletado");
+        }
     }
 }
 

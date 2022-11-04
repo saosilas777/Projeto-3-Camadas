@@ -48,7 +48,25 @@ namespace Silas.API.Controllers
 
 
         }
-        
+
+        [HttpPost("Delete")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 500)]
+        public async Task<object> Delete(int codigo)
+        {
+            try
+            {
+                var newCliente = _clienteServices.Remove(codigo);
+                return await Task.FromResult(newCliente);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+
+        }
+
         /// <summary>
         /// Atualizar um ou todos os dados do cliente
         /// </summary>

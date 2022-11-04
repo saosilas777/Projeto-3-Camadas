@@ -27,6 +27,7 @@ namespace Silas.Web.Services
         public dynamic Cliente(int codigo)
         {
             var result = JsonConvert.DeserializeObject<ClienteViewModel>(BuscarCliente(codigo));
+             
             var avm = new ApplicationViewModel
             {
                 ClienteViewModel = new ClienteViewModel
@@ -38,6 +39,8 @@ namespace Silas.Web.Services
                     Cidade = result.Cidade,
                     Estado = result.Estado,
                     Contato = result.Contato,
+
+                    
                     HistoricoCliente = result.HistoricoCliente,
 
 
@@ -79,10 +82,10 @@ namespace Silas.Web.Services
 
         }
 
-        public dynamic DeletarEmail(string email)
+        public dynamic Delete(int codigo)
         {
-            string url = "https://localhost:5001/Cliente/DeletarEmail";
-            return HttpHelper.POST(url, email);
+            string url = $"https://localhost:5001/Cliente/Delete?codigo={codigo}";
+            return HttpHelper.POST(url, codigo);
 
         }
         public dynamic Cadastro(ClienteViewModel cliente)

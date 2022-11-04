@@ -74,6 +74,31 @@ namespace Silas.API.Services
 
         }
 
+        public string Remove(int codigo)
+        {
+                       
+            var ClienteId = _clienteRepository.GetAll().Result.Where(x => x.Codigo == codigo).FirstOrDefault();
+
+
+            var tel = _telefoneRepository.GetAll().Result.Where(x => x.ClienteId == ClienteId.Id).ToList();
+            foreach (var telefone in tel)
+            {
+               _telefoneRepository.Delete(telefone);
+            }
+            var mail = _emailsRepository.GetAll().Result.Where(x => x.ClienteId == ClienteId.Id).ToList();
+            foreach (var email in mail)
+            {
+                _emailsRepository.Delete(email);
+            }
+
+            _clienteRepository.Delete(ClienteId);
+                _context.SaveChanges();
+            
+            return "Cliente deletado";
+
+        }
+
+
         public string Atualizar(ClienteModel cliente)
         {
             var _cliente = _clienteRepository.GetAll().Result.Where(x => x.Codigo == cliente.Codigo).FirstOrDefault();

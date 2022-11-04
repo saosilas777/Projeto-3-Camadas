@@ -44,7 +44,7 @@ namespace Repository
 
         public void Delete(Emails email)
         {
-            throw new NotImplementedException();
+            _context.Remove(email);
         }
 
         public void Update(Emails email)

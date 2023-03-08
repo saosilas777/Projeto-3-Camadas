@@ -21,89 +21,69 @@
     <form asp-action="Cadastrar" asp-controller="Clientes" method="post" id="form">
         <div class="card-body">
 
-            <div class="form-group row">
-                <label for ="example-search-input" class="col-2 col-form-label">Código Cliente</label>
-                <div class="col-9">
-                    <input class="ylw form-control inputs" type="text" placeholder="12345" id="example-text-input"
-                           name="Codigo" maxlength="5" autofocus required />
-                </div>
+            <div class="form-group">
+                <label>Código Cliente</label>
+                <input class="ylw form-control inputs" type="text" placeholder="12345" id="example-text-input"
+                       name="Codigo" maxlength="5" autofocus required />
             </div>
-            <div class="form-group row">
-                <label for="example-search-input" class="col-2 col-form-label">Razão Social</label>
-                <div class="col-9">
-                    <input class="ylw form-control inputs" type="text" placeholder="Auto Peças LTDA"
-                           id="example-search-input" name="RazaoSocial" required/>
-                </div>
-
+            <div class="form-group">
+                <label>Razão Social</label>
+                <input class="ylw form-control inputs" type="text" placeholder="Auto Peças LTDA"
+                       id="example-search-input" name="RazaoSocial" required />
             </div>
-            <div class="form-group row">
-                <label for="example-email-input" class="col-2 col-form-label">Bairro</label>
-                <div class="col-9">
-                    <input class="ylw form-control inputs" type="text" placeholder="Vila Maria" id="example-email-input"
-                           name="Bairro" required />
-                </div>
+            <div class="form-group">
+                <label>Bairro</label>
+                <input class="ylw form-control inputs" type="text" placeholder="Vila Maria" id="example-email-input"
+                       name="Bairro" required />
             </div>
-            <div class="form-group row">
-                <label for="example-url-input" class="col-2 col-form-label">Cidade</label>
-                <div class="col-9">
-                    <input class="ylw form-control inputs" placeholder="São Paulo" id="example-url-input" name="Cidade"  required/>
-                </div>
+            <div class="form-group">
+                <label>Cidade</label>
+                <input class="ylw form-control inputs" placeholder="São Paulo" id="example-url-input" name="Cidade" required />
             </div>
-            <div class="form-group row">
-                <label for="example-tel-input" class="col-2 col-form-label">Estado</label>
-                <div class="col-9">
-                    <select class="ylw form-control inputs" type="text" placeholder="UF" id="example-tel-input" name="Estado" required>
-                        <option value="AC">AC</option>
-                        <option value="AL">AL</option>
-                        <option value="AP">AP</option>
-                        <option value="AM">AM</option>
-                        <option value="BA">BA</option>
-                        <option value="CE">CE</option>
-                        <option value="DF">DF</option>
-                        <option value="ES">ES</option>
-                        <option value="GO">GO</option>
-                        <option value="MA">MA</option>
-                        <option value="MT">MT</option>
-                        <option value="MS">MS</option>
-                        <option value="MG">MG</option>
-                        <option value="PA">PA</option>
-                        <option value="PB">PB</option>
-                        <option value="PR">PR</option>
-                        <option value="PE">PE</option>
-                        <option value="PI">PI</option>
-                        <option value="RJ">RJ</option>
-                        <option value="RN">RN</option>
-                        <option value="RS">RS</option>
-                        <option value="RO">RO</option>
-                        <option value="RR">RR</option>
-                        <option value="SC">SC</option>
-                        <option value="SP" selected>SP</option>
-                        <option value="SE">SE</option>
-                        <option value="TO">TO</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label>Estado</label>
+                <select class="ylw form-control inputs" type="text" placeholder="UF" id="example-tel-input" name="Estado" required>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP" selected>SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                </select>
             </div>
-            <div id="telefone" class="form-group row">
-                <label for="example-password-input" class="col-2 col-form-label">Telefone</label>
-                <div class="col-9">
-                    <input class="ylw form-control inputs" type="tel" placeholder="(XX)XXXXX-XXXX" id="example-password-input" name="Telefone" maxlength="11" />
-                </div>
+            <div id="telefone" class="form-group">
+                <label>Telefone</label>
+                <input class="ylw form-control inputs" type="tel" placeholder="(XX)XXXXX-XXXX" id="example-password-input" name="Telefone" maxlength="11" />
                 <div>
                     <button type="button" class="btn btn-bg-dark text-light" id="adcButton" onclick="AdcTelefone()">+</button>
-
                 </div>
             </div>
-
-
-
-            <div id="email" class="efect form-group row">
-                <label for="example-number-input" class="col-2 col-form-label">Email</label>
-                <div class="col-9">
-                    <input class="ylw form-control inputs" type="email" placeholder="autopecas@email.com" id="example-number-input" name="Email" required />
-                </div>
+            <div id="email" class="efect form-group">
+                <label>Email</label>
+                <input class="ylw form-control inputs" type="email" placeholder="autopecas@email.com" id="example-number-input" name="Email" required />
                 <div>
                     <button type="button" class="btn btn-bg-dark text-light" id="adcButton" onclick="AdcEmail()">+</button>
-
                 </div>
             </div>
             <div class="card-footer ">
@@ -113,12 +93,13 @@
                     <div class="col-10">
                         <button type="button" onclick="submite()" class="btn btn-success mr-2" id="submit">Enviar</button>
                         <button type="reset" class="btn btn-secondary">Cancelar</button>
-                        <button type="submit" id="submit-form" hidden disabled ></button>
+                        <button type="submit" id="submit-form" hidden disabled></button>
 
                     </div>
                 </div>
             </div>
         </div>
+
 
     </form>
 </div>

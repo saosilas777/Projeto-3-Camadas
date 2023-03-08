@@ -24,7 +24,10 @@
 
 
 
-<style>
+@*<style>
+    body{
+       max-height:50%;
+    }
     .botao {
         text-align: center;
         overflow: auto;
@@ -40,7 +43,7 @@
         margin-top: 0;
         margin-bottom: 0;
     }
-</style>
+</style>*@
 
 <div id="Cliente">
     <div class="card card-custom">
@@ -79,7 +82,36 @@
                 <div class="form-group row">
                     <label for="example-tel-input" class="col-2 col-form-label">Estado</label>
                     <div class="col-8">
-                        <input class="form-control" type="text" id="example-tel-input" name="estado" value="@estado">
+                        <select class="form-control" type="text" id="example-tel-input" name="estado">
+                            <option hidden value="@estado">@estado.ToString()</option>
+                            <option value="AC">SP</option>
+                            <option value="AL">RJ</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                        </select>
                     </div>
                 </div>
 
@@ -123,15 +155,26 @@
                     </div>
                     count++;
                 }
-                @{
-                    count = 0;
-                }
-                <div class="col-10">
+                <div class="form-group row">
+                    <label for="IsActive" class="col-2 col-form-label">IsActive</label>
+                    <div class="col-8">
+                        <select class="form-control" name="IsActive">
+                            <option value="true">Ativo</option>
+                            <option value="false">Inativo</option>
+                        </select>
+                    </div>
+                </div>
+               
+                <div class="col-10 form-group row">
                     <button type="submit" class="btn btn-success mr-2" id="btn-submit">Salvar</button>
                     <button type="reset" class="btn btn-danger">Cancelar</button>
                 </div>
-
             </div>
+            @{
+                count = 0;
+            }
+            
+
 
         </form>
     </div>

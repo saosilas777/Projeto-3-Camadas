@@ -20,4 +20,21 @@ function AdcEmail() {
 
    
     
+var $input = document.querySelectorAll('.inputs');
+
+$($input).keyup(function (e) {
+    if (e.which === 13) {
         
+        var index = $($input).index(this) + 1;
+        
+        $($input).eq(index).focus();
+    }
+});
+
+
+
+function submite() {
+    var $btnSubmite = document.getElementById('submit-form'); 
+    $btnSubmite.disabled = false;
+    $btnSubmite.click();
+}

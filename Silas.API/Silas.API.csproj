@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Silas.API.xml</DocumentationFile>
+    <StartupObject>Silas.API.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

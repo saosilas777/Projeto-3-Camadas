@@ -48,60 +48,64 @@ var KTDatatable = function () {
             },
 
             // columns definition
-            columns: [{
-                field: 'codigo',
-                title: 'Codigo',
-                sortable: false,
-                width: 150,
-                //selector: {
-                //    class: ''
-                //},
-                textAlign: 'center',
-                template: function (row) {
-                    return '<a href="javascript:buscarCliente(' + [row.codigo] + ')[0]">' + [row.codigo] + '</a>';
-                }
-            }, {
-                field: 'razaoSocial',
-                width: 200,
-                title: 'Razao Social',
-            }, {
-                field: 'cidade',
-                width: 100,
-                title: 'Cidade',
-            }, {
-                field: 'estado',
-                width: 60,
-                title: 'Estado',
-            }, {
-                field: 'isActive',
-                type: 'boolean',
-                width: 100,
-                title: 'Status',
-                autoHide: false,
-                // callback function support for column rendering
-                template: function (row) {
-                    var status = {
-                        true: {
-                            'title': 'Active',
-                            'class': ' label-light-success'
-                        },
-                        false: {
-                            'title': 'Inactive',
-                            'class': ' label-light-danger'
-                        }
-                    };
-                    return '<span class="label font-weight-bold label-lg' + status[row.isActive].class + ' label-inline">' + status[row.isActive].title + '</span>';
-                },
-            }],
+            columns: [
+                {
+                    field: 'codigo',
+                    title: 'Codigo',
+                    sortable: false,
+                    width: 150,
+                    textAlign: 'center',
+                    template: function (row) {
+                        return '<a href="javascript:buscarCliente(' + [row.codigo] + ')[0]">' + [row.codigo] + '</a>';
+                    }
+                }, {
+                    field: 'razaoSocial',
+                    width: 200,
+                    title: 'Razao Social',
+                }, {
+                    field: 'cidade',
+                    width: 100,
+                    title: 'Cidade',
+                }, {
+                    field: 'estado',
+                    width: 60,
+                    title: 'Estado',
+                }, {
+                    field: 'isActive',
+
+                    width: 100,
+                    title: 'Status',
+                    autoHide: false,
+                    // callback function support for column rendering
+                    template: function (row) {
+                        var status = {
+                            true: {
+                                'title': 'Active',
+                                'class': ' label-light-success'
+                            },
+                           false: {
+                                'title': 'Inactive',
+                                'class': ' label-light-danger'
+                            }
+                        };
+                        return '<span class="label font-weight-bold label-lg' + status[row.isActive].class + ' label-inline">' + status[row.isActive].title + '</span>';
+                    },
+                }, 
+                
+            ],
         });
 
-        $('#kt_datatable_search_level').on('change', function () {
-            datatable.search($(this).val().toLowerCase(), 'type');
-        });
-        // $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
-        $('#kt_datatable_search_type').selectpicker();
+        $('#kt_datatable_search_status').on('change', function () {
 
+            datatable.search($(this).val(), 'isActive')
+        });
+        $('#kt_datatable_search_type').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'estado');
+        });
+
+        $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
     };
+
     return {
         // public functions
         init: function () {
@@ -114,7 +118,7 @@ var KTDatatable = function () {
 
 function buscarCliente(codigo) {
     window.location.href = "/Clientes/Cliente?codigo=" + codigo;
-       
+
 }
 
 initDOM();

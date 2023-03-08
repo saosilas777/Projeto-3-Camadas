@@ -9,8 +9,9 @@
         public string Estado { get; set; }
         public string[] Telefone { get; set; }
         public string[] Email { get; set; }
+        public bool IsActive { get; set; }
         public ContatoModels Contato { get; set; }
-        public HistoricoClienteModel? HistoricoCliente { get; set; }
+        public HistoricoClienteModel HistoricoCliente { get; set; }
 
 
 

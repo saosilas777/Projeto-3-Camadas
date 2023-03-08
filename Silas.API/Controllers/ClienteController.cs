@@ -10,6 +10,7 @@ using Silas.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Silas.API.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Silas.API.Controllers
 {
@@ -17,12 +18,16 @@ namespace Silas.API.Controllers
     [Route("[Controller]")]
     public class ClienteController : Controller
     {
+        
+        IConfiguration _configuration;
         ClienteServices _clienteServices;
 
-        public ClienteController()
+
+        public ClienteController(IConfiguration configuration)
         {
-            _clienteServices = new ClienteServices();
+            _clienteServices = new ClienteServices(configuration);
         }
+        
 
         #region Metodos
 
@@ -49,6 +54,11 @@ namespace Silas.API.Controllers
 
         }
 
+        /// <summary>
+        /// Deleta um cliente no banco de dados
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
         [HttpPost("Delete")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
@@ -166,10 +176,10 @@ namespace Silas.API.Controllers
         /// <param name="codigo"></param>
         /// <returns></returns>
 
-        [HttpPost("NovoRegistroDeContato")]
+        [HttpPost("RegistroContato")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> AddRegistro([FromBody] HistoricoContatoModel registro, int codigo)
+        public async Task<object> RegistroContato([FromBody] HistoricoContatoModel registro, int codigo)
         {
             try
             {
@@ -192,7 +202,7 @@ namespace Silas.API.Controllers
         [HttpGet("BuscarRegistroContato")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 500)]
-        public async Task<object> RegistroContato(int codigo)
+        public async Task<object> BuscarRegistroContato(int codigo)
         {
             try
             {

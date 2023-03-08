@@ -1,0 +1,22 @@
+﻿#principal img {
+    margin-bottom: 30px;
+}
+.container {
+    position: relative;
+}
+#kt_body {
+   
+    background: #ccc;
+}
+
+#principal-text h2, p {
+    color: white;
+}
+
+#kt_footer {
+    
+    position:absolute;
+    bottom:0;
+
+   
+}

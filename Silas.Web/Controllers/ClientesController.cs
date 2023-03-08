@@ -39,16 +39,14 @@ namespace Silas.Web.Controllers
 
         }
 
+
+        //metodo somente para chamar a pagina
         [HttpGet("CadastroCliente")]
         public IActionResult CadastroCliente()
         {
             return View("CadastroCliente");
         }
-        [HttpGet("About")]
-        public IActionResult About()
-        {
-            return View("About");
-        }
+        
         [HttpGet("ListarClientes")]
         public IActionResult ListarClientes()
         {
@@ -110,6 +108,23 @@ namespace Silas.Web.Controllers
             
             _services.Delete(int.Parse(cliente.Codigo));
             return View("Deletado");
+        }
+
+        [HttpGet("RegistroContato")]
+        public IActionResult RegistroContato(int codigo)
+        {
+            var avm = _services.Cliente(codigo);
+            return View("RegistroContato", avm);
+
+
+        }
+
+        [HttpPost("RegistrarContato")]
+        public dynamic RegistrarContato(HistoricoContatoViewModel registro)
+        {
+             _services.AddRegistro(registro);
+            var avm = _services.Cliente(int.Parse(registro.Codigo));
+            return View("Cliente", avm);
         }
     }
 }

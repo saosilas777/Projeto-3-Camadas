@@ -1,5 +1,6 @@
 ﻿using Data.Context;
 using Domain.Entity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Win32;
 using Repository;
 using Silas.API.Models;
@@ -21,13 +22,16 @@ namespace Silas.API.Services
         private EmailsRepository _emailsRepository;
         private HistoricoCompraRepository _compraRepository;
         private HistoricoClienteRepository _historicoRepository;
+        private IConfiguration _iconfiguration;
+        
         #endregion
 
 
 
         #region CONSTRUCTOR
 
-        public ClienteServices()
+        
+        public ClienteServices(IConfiguration configuration)
         {
             _context = new DbSilasContext();
             _clienteRepository = new CLienteRepository(_context);
@@ -35,6 +39,7 @@ namespace Silas.API.Services
             _emailsRepository = new EmailsRepository(_context);
             _compraRepository = new HistoricoCompraRepository(_context);
             _historicoRepository = new HistoricoClienteRepository(_context);
+            _iconfiguration = configuration;
 
         }
         #endregion
@@ -47,7 +52,7 @@ namespace Silas.API.Services
                 throw new Exception("Cliente já possui cadastro!");
             Validate(cliente);
 
-            Cliente _cliente = new Cliente { Codigo = cliente.Codigo, RazaoSocial = cliente.RazaoSocial, Bairro = cliente.Bairro, Cidade = cliente.Cidade, Estado = cliente.Estado, IsActive = true };
+            Cliente _cliente = new Cliente { Codigo = cliente.Codigo, RazaoSocial = cliente.RazaoSocial, Bairro = cliente.Bairro, Cidade = cliente.Cidade, Estado = cliente.Estado, IsActive = false };
             var ClienteId = _clienteRepository.Add(_cliente);
 
             ICollection<Telefones> _telefones = new List<Telefones>();
@@ -109,6 +114,7 @@ namespace Silas.API.Services
             _cliente.Bairro = cliente.Bairro;
             _cliente.Cidade = cliente.Cidade;
             _cliente.Estado = cliente.Estado;
+            _cliente.IsActive = cliente.IsActive;
 
             List<Telefones> tels = new List<Telefones>();
 

@@ -25,6 +25,13 @@
             <param name="cliente"></param>
             <returns></returns>
         </member>
+        <member name="M:Silas.API.Controllers.ClienteController.Delete(System.Int32)">
+            <summary>
+            Deleta um cliente no banco de dados
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
         <member name="M:Silas.API.Controllers.ClienteController.Atualizar(Silas.API.Models.ClienteModel)">
             <summary>
             Atualizar um ou todos os dados do cliente
@@ -53,7 +60,7 @@
             <param name="codigo"></param>
             <returns></returns>
         </member>
-        <member name="M:Silas.API.Controllers.ClienteController.AddRegistro(Silas.API.Models.HistoricoContatoModel,System.Int32)">
+        <member name="M:Silas.API.Controllers.ClienteController.RegistroContato(Silas.API.Models.HistoricoContatoModel,System.Int32)">
             <summary>
             Registra o contato realizado em um cliente baseado no codigo de cliente
             </summary>
@@ -61,7 +68,7 @@
             <param name="codigo"></param>
             <returns></returns>
         </member>
-        <member name="M:Silas.API.Controllers.ClienteController.RegistroContato(System.Int32)">
+        <member name="M:Silas.API.Controllers.ClienteController.BuscarRegistroContato(System.Int32)">
             <summary>
             Busca um registro de contato de um cliente com base em seu codigo
             </summary>

@@ -15,8 +15,8 @@
 
     if (historicos.Count > 0)
     {
-        hist = historicos.FirstOrDefault().RegistroDeContato;
-        data = historicos.FirstOrDefault().Data.ToShortDateString();
+        hist = historicos.LastOrDefault().RegistroDeContato;
+        data = historicos.LastOrDefault().Data.ToString("dd/MM/yyyy HH:mm");
     }
 
 
@@ -24,7 +24,7 @@
 
 
 
-<style>
+@*<style>
     .botao {
         text-align: center;
         overflow: auto;
@@ -37,9 +37,8 @@
 
     .btn1 {
         margin-left: 20px;
-       
     }
-</style>
+</style>*@
 
 <div id="Cliente">
     <div class="card card-custom">
@@ -49,12 +48,12 @@
             </h3>
         </div>
         <!--begin::Form-->
-        <form>
+        <form asp-action="RegistrarContato" asp-controller="Clientes" method="post">
             <div class="card-body">
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Código Cliente</label>
                     <div class="col-8">
-                        <output class="form-control" type="text" id="codigo" name="Codigo">@codigo</output>
+                        <input class="form-control" type="text" id="codigo" name="Codigo" value="@codigo" readonly />
                     </div>
                 </div>
                 <div class="form-group row">
@@ -130,31 +129,68 @@
                 {
                     <div class="form-group row">
                         <label for="example-number-input" class="col-2 col-form-label ">Historico</label>
-                        <div class="col-8">
-                            <output class="form-control" type="text" id="historico" name="historico">@hist</output>
+                        <div class="col-3">
+                            <textarea class="form-control" type="text" id="historico" name="historico" style="resize:none; block-size:150px; margin-right:18px" readonly>@hist</textarea>
+
                         </div>
                         @foreach (var x in historicos)
                         {
-
                             if (count < 1)
                             {
                                 <div class="form-group row">
-                                    <a class="botao btn btn-bg-dark btn-text-light" href="@Url.Action("HistoricoCliente","Clientes",new {codigo = codigo})">Historico</a>
+                                    <a class="botao btn btn-bg-dark btn-text-light" style="max-height:45px; padding:10px; margin-left:5px; margin-right:43px; box-sizing:border-box" href="@Url.Action("HistoricoCliente","Clientes",new {codigo = codigo})">Historico</a>
                                 </div>
                             }
                             count++;
-
-
                         }
+
+                        <label for="example-number-input" class="col-2 col-form-label" style="text-align:right; margin-left:2px">Data</label>
+                        <div class="col-2">
+                            <output class="form-control" type="text" id="data" name="data">@data</output>
+                        </div>
                     </div>
+
+
+
                 }
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Registro de contatos</label>
+                    <div class="col-3">
+                        <textarea class="form-control" type="text" id="registrodecontato" name="RegistroDeContato" style="background-color:#e7e7e7;border:1px solid black; resize:none; block-size:150px; margin-right:18px"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark text-light" id="submit-historico" style="max-height:45px; padding:10px; margin-left:1px;">Enviar</button>
+
                 </div>
-            <div class="form-group">
-                <a class="btn1 btn btn-dark text-light" href="@Url.Action("ClienteUpdate","Clientes",new {codigo = codigo})">Alterar</a>
+                <div class="form-group">
+                    <a class="btn1 btn btn-dark text-light" href="@Url.Action("ClienteUpdate","Clientes",new {codigo = codigo})">Editar</a>
 
-                <a class="btn1 btn btn-danger text-light" href="@Url.Action("Delete","Clientes",new {codigo = codigo})">Deletar</a>
-
+                    <a class="btn1 btn btn-danger text-light" href="@Url.Action("Delete","Clientes",new {codigo = codigo})">Deletar</a>
+                </div>
             </div>
+
+
+
+
         </form>
     </div>
 </div>
+
+@* </form>
+        <div class="card card-custom">
+        <form asp-action="RegistrarContato" asp-controller="Clientes" method="post" id="form-historico">
+        <div hidden class="form-group row">
+        <label class="col-2 col-form-label">Codigo Cliente</label>
+        <div class="col-8">
+        <input class="form-control" type="text" id="codigo" name="Codigo" value="@codigo" />
+        </div>
+        </div>
+        <div class="form-group row">
+        <label class="col-2 col-form-label">Registro de contatos</label>
+        <div class="col-8">
+        <textarea class="form-control" type="text" id="registrodecontato" name="RegistroDeContato" style="resize:none"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark text-light" id="submit-historico">Enviar</button>
+
+        </div>
+
+        </form>*@

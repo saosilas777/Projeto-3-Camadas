@@ -58,10 +58,13 @@ namespace Silas.Web
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "default", template: "{controller=Login}/{action=Login}");
-                routes.MapRoute(name: "Clientes", template: "{controller=Clientes}/{action=Clientes}");
-                routes.MapRoute(name: "About", template: "{controller=About}/{action=About}");
+                /*routes.MapRoute(name: "default", template: "{controller=Login}/{action=Login}");*/
+                routes.MapRoute(name: "default", template: "{controller=Clientes}/{action=Clientes}");
+                
+                /*routes.MapRoute(name: "Clientes", template: "{controller=Clientes}/{action=Clientes}");
+                routes.MapRoute(name: "About", template: "{controller=About}/{action=About}");*/
             });
+            
         }
     }
 }

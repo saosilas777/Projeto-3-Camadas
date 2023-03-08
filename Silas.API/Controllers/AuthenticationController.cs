@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Silas.API.Models;
 using Silas.API.Services;
@@ -15,6 +16,8 @@ namespace Silas.API.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
+
+        
         [HttpPost("Authentication")]
         [ProducesResponseType (typeof (IJWTAuth), 200)]
         [ProducesResponseType (typeof (string), 500)]

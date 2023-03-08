@@ -5,14 +5,17 @@ using Silas.Web.Models.ViewModels;
 using Silas.Web.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Routing;
+using System;
+using Microsoft.Extensions.Configuration;
 
 namespace Silas.Web.Services
 {
     public class ClienteServices
     {
-
         public dynamic ListarClientesCadastrados()
         {
+            
+           /* string url = "http://192.168.15.11:9999/Cliente/ClientesCadastrados";*/
             string url = "https://localhost:5001/Cliente/ClientesCadastrados";
             return HttpHelper.GET(url).Content;
         }
@@ -127,6 +130,19 @@ namespace Silas.Web.Services
         {
             var mail = new EmailsModel { Email = email, IsActive = true };
             return mail;
+        }
+
+        public dynamic AddRegistro(HistoricoContatoViewModel resgistro)
+        {
+            var code = resgistro.Codigo;
+            string url = $"https://localhost:5001/Cliente/RegistroContato?codigo={code}";
+            var reg = new HistoricoContatoModel { RegistroDeContato = resgistro.RegistroDeContato, Data = DateTime.Now };
+            //var reg = new HistoricoContatoModel { RegistroDeContato = resgistro};
+            
+
+            return HttpHelper.POST(url, JsonConvert.SerializeObject(reg));
+
+
         }
     }
 }

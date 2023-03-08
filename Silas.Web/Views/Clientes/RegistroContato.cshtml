@@ -1,0 +1,27 @@
+﻿@model ApplicationViewModel
+
+@{
+    var codigo = Model.ClienteViewModel.Codigo;
+}
+
+<form asp-action="RegistrarContato" asp-controller="Clientes" method="post">
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Codigo Cliente</label>
+        <div class="col-8">
+            <input class="form-control" type="text" id="codigo" name="Codigo" value="@codigo"/>
+        </div>
+
+
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Registro de contatos</label>
+        <div class="col-8">
+            <textarea class="form-control" type="text" id="registrodecontato" name="RegistroDeContato" style="resize:none"></textarea>
+        </div>
+
+        
+    </div>
+    <button type="submit" class="btn btn-success mr-2" id="btn-submit">Enviar</button>
+</form>
+
+@*<a class="botao btn btn-bg-dark btn-text-light" href="@Url.Action("RegistrarContato","Clientes", new {codigo = codigo})">Registro</a>*@

@@ -2,7 +2,7 @@
 let jsonResponse;
 
 function initDOM() {
-    setTimeout(() => { ClientesCadastrados(); }, 1000)
+    setTimeout(() => { ClientesCadastrados(); }, 200);
 }
 
 
@@ -24,9 +24,11 @@ function ClientesCadastrados() {
     });
 }
 
+
 var KTDatatable = function () {
     var load = function () {
         var Array = JSON.parse(jsonResponse);
+
         var datatable = $('#kt_datatable').KTDatatable({
             // datasource definition
             data: {
@@ -83,17 +85,20 @@ var KTDatatable = function () {
                                 'title': 'Active',
                                 'class': ' label-light-success'
                             },
-                           false: {
+                            false: {
                                 'title': 'Inactive',
                                 'class': ' label-light-danger'
                             }
                         };
                         return '<span class="label font-weight-bold label-lg' + status[row.isActive].class + ' label-inline">' + status[row.isActive].title + '</span>';
                     },
-                }, 
-                
+                },
             ],
-        });
+        }
+
+        );
+
+
 
         $('#kt_datatable_search_status').on('change', function () {
 

@@ -12,18 +12,26 @@ namespace Silas.Web.Services
 {
     public class ClienteServices
     {
+        public string changeUrl() {
+
+            string pub = "http://192.168.15.11:9999/";
+            string dev = "https://localhost:5001/";
+            string url = dev;
+            return url;
+
+        }
+
+       
         public dynamic ListarClientesCadastrados()
         {
-            
-           /* string url = "http://192.168.15.11:9999/Cliente/ClientesCadastrados";*/
-            string url = "https://localhost:5001/Cliente/ClientesCadastrados";
+            string url = changeUrl() + "Cliente/ClientesCadastrados";
             return HttpHelper.GET(url).Content;
         }
 
 
         public dynamic BuscarCliente(int codigo)
         {
-            string url = $"https://localhost:5001/Cliente/BuscarCliente?codigo={codigo}";
+            string url = $"{changeUrl()}Cliente/BuscarCliente?codigo={codigo}";
             return HttpHelper.GET(url).Content;
         }
 
@@ -54,7 +62,7 @@ namespace Silas.Web.Services
 
         public dynamic Atualizar(ClienteViewModel cliente)
         {
-            string url = "https://localhost:5001/Cliente/Atualizar";
+            string url = changeUrl() + "Cliente/Atualizar";
             ICollection<EmailsModel> emails = new List<EmailsModel>();
             ICollection<TelefonesModel> tels = new List<TelefonesModel>();
 
@@ -87,7 +95,7 @@ namespace Silas.Web.Services
 
         public dynamic Delete(int codigo)
         {
-            string url = $"https://localhost:5001/Cliente/Delete?codigo={codigo}";
+            string url = $"{changeUrl()}Cliente/Delete?codigo={codigo}";
             return HttpHelper.POST(url, codigo);
 
         }
@@ -95,7 +103,7 @@ namespace Silas.Web.Services
         {
 
 
-            string url = "https://localhost:5001/Cliente/Cadastro";
+            string url = changeUrl() + "Cliente/Cadastro";
             ICollection<EmailsModel> emails = new List<EmailsModel>();
             ICollection<TelefonesModel> tels = new List<TelefonesModel>();
 
@@ -135,7 +143,7 @@ namespace Silas.Web.Services
         public dynamic AddRegistro(HistoricoContatoViewModel resgistro)
         {
             var code = resgistro.Codigo;
-            string url = $"https://localhost:5001/Cliente/RegistroContato?codigo={code}";
+            string url = $"{changeUrl()}Cliente/RegistroContato?codigo={code}";
             var reg = new HistoricoContatoModel { RegistroDeContato = resgistro.RegistroDeContato, Data = DateTime.Now };
             //var reg = new HistoricoContatoModel { RegistroDeContato = resgistro};
             

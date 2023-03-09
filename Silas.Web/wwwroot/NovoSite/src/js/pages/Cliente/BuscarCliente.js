@@ -1,5 +1,6 @@
 ﻿"use strict";
 let jsonResponse;
+let jsonResponseRegistro;
 const codigoCliente = document.getElementById("codigoCliente");
 
 function initDOM() {
@@ -23,6 +24,7 @@ function BuscarCliente() {
         console.log(e.responseText);
     });
 }
+
 
 var KTDatatable = function () {
     var load = function () {

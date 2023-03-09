@@ -10,6 +10,18 @@
         position: relative;
     }
 
+    .inputBtn button{
+        display:inline;
+        margin-top:10px;
+
+    }
+    .inputBtn input{
+         display:inline;
+    }
+    label{
+        display:block;
+    }
+
 </style>
 <div class="card card-custom">
     <div class="card-header">
@@ -73,18 +85,22 @@
                 </select>
             </div>
             <div id="telefone" class="form-group">
-                <label>Telefone</label>
-                <input class="ylw form-control inputs" type="tel" placeholder="(XX)XXXXX-XXXX" id="example-password-input" name="Telefone" maxlength="11" />
-                <div>
-                    <button type="button" class="btn btn-bg-dark text-light" id="adcButton" onclick="AdcTelefone()">+</button>
+                <div class="inputBtn">
+                    <label>Telefone</label>
+                    <input class="ylw form-control inputs" type="tel" placeholder="(XX)XXXXX-XXXX" id="example-password-input" name="Telefone" maxlength="11" />
+                    <div>
+                        <button type="button" class="btn btn-bg-dark text-light" id="adcButton" onclick="AdcTelefone()">Adicionar +</button>
+                    </div>
                 </div>
             </div>
             <div id="email" class="efect form-group">
-                <label>Email</label>
-                <input class="ylw form-control inputs" type="email" placeholder="autopecas@email.com" id="example-number-input" name="Email" required />
-                <div>
-                    <button type="button" class="btn btn-bg-dark text-light" id="adcButton" onclick="AdcEmail()">+</button>
+
+                <div class="inputBtn">
+                    <label>Email</label>
+                    <input class="ylw form-control inputs " type="email" placeholder="autopecas@email.com" id="email" name="Email" required />
+                    <button type="button" class="btn btn-bg-dark text-light" id="adcButton" onclick="AdcEmail()">Adicionar +</button>
                 </div>
+
             </div>
             <div class="card-footer ">
                 <div class="row">

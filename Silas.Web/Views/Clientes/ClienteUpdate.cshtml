@@ -21,29 +21,18 @@
 
 
 }
+<style>
 
 
-
-@*<style>
-    body{
-       max-height:50%;
-    }
-    .botao {
-        text-align: center;
-        overflow: auto;
-        float: right;
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-left: 15px;
-        margin-right: 15px;
+    input {
+        overflow: hidden;
     }
 
-    .btn1 {
-        margin-left: 0;
-        margin-top: 0;
-        margin-bottom: 0;
+    output {
+        overflow: hidden;
     }
-</style>*@
+</style>
+
 
 <div id="Cliente">
     <div class="card card-custom">
@@ -55,65 +44,64 @@
         <!--begin::Form-->
         <form asp-action="Atualizar" asp-controller="Clientes" method="post">
             <div class="card-body">
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">Código Cliente</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" id="codigo" name="Codigo" value="@codigo" readonly>
-                    </div>
+
+                <div class="form-group">
+                    <label>Código</label>
+                    <input class="form-control" type="text" id="codigo" name="Codigo" value="@codigo" readonly>
                 </div>
-                <div class="form-group row">
-                    <label for="example-search-input" class="col-2 col-form-label">Razão Social</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" id="razaoSocial" name="RazaoSocial" value="@razaoSocial">
-                    </div>
+                <div class="form-group">
+                    <label>Razão Social</label>
+                    <input class="form-control" type="text" id="razaoSocial" name="RazaoSocial" value="@razaoSocial">
                 </div>
-                <div class="form-group row">
-                    <label for="example-email-input" class="col-2 col-form-label">Bairro</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" id="bairro" name="Bairro" value="@bairro">
-                    </div>
+                <div class="form-group">
+                    <label>Bairro</label>
+                    <input class="form-control" type="text" id="bairro" name="Bairro" value="@bairro">
                 </div>
-                <div class="form-group row">
-                    <label for="example-url-input" class="col-2 col-form-label">Cidade</label>
-                    <div class="col-8">
-                        <input class="form-control" id="cidade" name="cidade" value="@cidade">
-                    </div>
+                <div class="form-group">
+                    <label>Cidade</label>
+                    <input class="form-control" id="cidade" name="cidade" value="@cidade">
                 </div>
-                <div class="form-group row">
-                    <label for="example-tel-input" class="col-2 col-form-label">Estado</label>
-                    <div class="col-8">
-                        <select class="form-control" type="text" id="example-tel-input" name="estado">
-                            <option hidden value="@estado">@estado.ToString()</option>
-                            <option value="AC">SP</option>
-                            <option value="AL">RJ</option>
-                            <option value="AP">AP</option>
-                            <option value="AM">AM</option>
-                            <option value="BA">BA</option>
-                            <option value="CE">CE</option>
-                            <option value="DF">DF</option>
-                            <option value="ES">ES</option>
-                            <option value="GO">GO</option>
-                            <option value="MA">MA</option>
-                            <option value="MT">MT</option>
-                            <option value="MS">MS</option>
-                            <option value="MG">MG</option>
-                            <option value="PA">PA</option>
-                            <option value="PB">PB</option>
-                            <option value="PR">PR</option>
-                            <option value="PE">PE</option>
-                            <option value="PI">PI</option>
-                            <option value="RJ">RJ</option>
-                            <option value="RN">RN</option>
-                            <option value="RS">RS</option>
-                            <option value="RO">RO</option>
-                            <option value="RR">RR</option>
-                            <option value="SC">SC</option>
-                            <option value="SP">SP</option>
-                            <option value="SE">SE</option>
-                            <option value="TO">TO</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select class="form-control" type="text" id="example-tel-input" name="estado">
+                        <option hidden value="@estado">@estado.ToString()</option>
+                        <option value="AC">SP</option>
+                        <option value="AL">RJ</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label>IsActive</label>
+                    <select class="form-control" name="IsActive">
+                        <option value="true">Ativo</option>
+                        <option value="false">Inativo</option>
+                    </select>
+                </div>
+               
 
                 @foreach (var i in telefone)
                 {
@@ -125,11 +113,11 @@
 
                     var _name = "telefone-" + count.ToString();
 
-                    <div class="form-group row" id="telefone">
-                        <label for="example-password-input" class="col-2 col-form-label">@label</label>
-                        <div class="col-8">
-                            <input class="form-control" type="text" id="@_name" name="Telefone" value="@i.Telefone" maxlength="11">
-                        </div>
+                    <div class="form-group" id="telefone">
+                        <label>@label</label>
+
+                        <input class="form-control" type="text" id="@_name" name="Telefone" value="@i.Telefone" maxlength="11">
+
                     </div>
                     count++;
                 }
@@ -147,35 +135,26 @@
 
                     var _name = "email-" + count.ToString();
 
-                    <div class="form-group row" id="email">
-                        <label for="example-password-input" class="col-2 col-form-label">@label</label>
-                        <div class="col-8">
-                            <input class="form-control" type="text" id="@_name" name="Email" value="@i.Email">
-                        </div>
+                    <div class="form-group" id="email">
+                        <label>@label</label>
+
+                        <input class="form-control" type="text" id="@_name" name="Email" value="@i.Email">
+
                     </div>
                     count++;
                 }
-                <div class="form-group row">
-                    <label for="IsActive" class="col-2 col-form-label">IsActive</label>
-                    <div class="col-8">
-                        <select class="form-control" name="IsActive">
-                            <option value="true">Ativo</option>
-                            <option value="false">Inativo</option>
-                        </select>
-                    </div>
-                </div>
-               
-                <div class="col-10 form-group row">
-                    <button type="submit" class="btn btn-success mr-2" id="btn-submit">Salvar</button>
+
+
+
+
+                @{
+                    count = 0;
+                }
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" id="btn-submit">Salvar</button>
                     <button type="reset" class="btn btn-danger">Cancelar</button>
                 </div>
             </div>
-            @{
-                count = 0;
-            }
-            
-
-
         </form>
     </div>
 </div>

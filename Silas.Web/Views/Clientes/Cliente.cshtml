@@ -38,6 +38,13 @@
         font-weight: bold;
     }
 
+    input {
+        overflow: hidden;
+    }
+
+    output {
+        overflow: hidden;
+    }
 </style>
 
 <div id="Cliente">
@@ -61,7 +68,6 @@
                 <div class="form-group">
                     <div class="labelText">
                         <label>Razão Social</label>
-
                         <output class="form-control" type="text" id="razaoSocial" name="razaosocial">@razaoSocial</output>
 
                     </div>
@@ -87,98 +93,88 @@
                     </div>
                 </div>
 
-
-           
-
-
-
-
-
-            @foreach (var i in telefone)
-            {
-                string label = "Telefone";
-                if (count > 0)
+                @if (historicos.Count > 0)
                 {
-                    label += " " + (count + 1);
-                }
-
-                var _name = "telefone-" + count.ToString();
-                <div class="form-group" id="telefone">
-                    <div class="labelText">
-                        <label>@label</label>
-                        <output class="form-control" type="text" id="@_name" name="@_name">@i.Telefone</output>
+                    <div class="form-group">
+                        <div class="labelText">
+                            <label>Historico</label>
+                            <input class="form-control" type="text" id="historico" name="historico" value="@hist" readonly />
+                        </div>
                     </div>
-                </div>
-                count++;
-            }
-            @{
-                count = 0;
-            }
-            @foreach (var i in email)
-            {
-                string label = "Email";
-                if (count > 0)
-                {
-                    label += " " + (count + 1);
-                }
-                var _name = "email-" + count.ToString();
-
-                <div class="form-group" id="email">
-                    <div class="labelText">
-                        <label>@label</label>
-                        <output class="form-control" type="text" id="@_name" name="@_name">@i.Email</output>
+                    <div class="form-group">
+                        <div class="labelText">
+                            <label>Data</label>
+                            <output class="form-control" type="text" id="data" name="data">@data</output>
+                        </div>
                     </div>
-                </div>
-                count++;
-            }
-            @{
-                count = 0;
-            }
-
-            @if (historicos.Count > 0)
-            {
-                <div class="form-group">
-                    <div class="labelText">
-                        <label>Historico</label>
-                        <input class="form-control" type="text" id="historico" name="historico" value="@hist" readonly />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="labelText">
-                        <label>Data</label>
-                        <output class="form-control" type="text" id="data" name="data">@data</output>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @foreach (var x in historicos)
-                    {
-                        if (count < 1)
+                    <div class="form-group">
+                        @foreach (var x in historicos)
                         {
-                            <div class="form-group">
-                                <a class="botao btn btn-bg-dark btn-text-light" style="max-height:45px; padding:10px; box-sizing:border-box" href="@Url.Action("HistoricoCliente","Clientes",new {codigo = codigo})">Historico</a>
-                            </div>
+                            if (count < 1)
+                            {
+                                <div class="form-group">
+                                    <a class="botao btn btn-bg-dark btn-text-light" style="max-height:45px; padding:10px; box-sizing:border-box" href="@Url.Action("HistoricoCliente","Clientes",new {codigo = codigo})">Historico</a>
+                                </div>
+                            }
+                            count++;
                         }
-                        count++;
+                    </div>
+
+                }
+                
+                @foreach (var i in telefone)
+                {
+                    string label = "Telefone";
+                    if (count > 0)
+                    {
+                        label += " " + (count + 1);
                     }
+
+                    var _name = "telefone-" + count.ToString();
+                    <div class="form-group" id="telefone">
+                        <div class="labelText">
+                            <label>@label</label>
+                            <output class="form-control" type="text" id="@_name" name="@_name">@i.Telefone</output>
+                        </div>
+                    </div>
+                    count++;
+                }
+                @{
+                    count = 0;
+                }
+                @foreach (var i in email)
+                {
+                    string label = "Email";
+                    if (count > 0)
+                    {
+                        label += " " + (count + 1);
+                    }
+                    var _name = "email-" + count.ToString();
+
+                    <div class="form-group" id="email">
+                        <div class="labelText">
+                            <label>@label</label>
+                            <output class="form-control" type="text" id="@_name" name="@_name">@i.Email</output>
+                        </div>
+                    </div>
+                    count++;
+                }
+                @{
+                    count = 0;
+                }
+                <div class="form-group">
+                    <div class="labelText">
+                        <label>Registro de contatos</label>
+                        <input class="form-control" type="text" id="registrodecontato" name="RegistroDeContato" style="background-color:#e7e7e7;border:1px solid black;" />
+                        <button type="submit" class="btn btn-dark text-light" id="submit-historico" style="max-height:45px;margin-top:1.75rem; padding:10px; margin-left:1px;">Enviar</button>
+                    </div>
                 </div>
+                <div class="form-group btn-send">
+                    <a class="btn1 btn btn-dark text-light" href="@Url.Action("ClienteUpdate","Clientes",new {codigo = codigo})">Editar</a>
 
-            }
-            <div class="form-group">
-                <div class="labelText">
-                    <label>Registro de contatos</label>
-                    <input class="form-control" type="text" id="registrodecontato" name="RegistroDeContato" style="background-color:#e7e7e7;border:1px solid black;" />
-                    <button type="submit" class="btn btn-dark text-light" id="submit-historico" style="max-height:45px;margin-top:1.75rem; padding:10px; margin-left:1px;">Enviar</button>
+                    <a class="btn1 btn btn-danger text-light" href="@Url.Action("Delete","Clientes",new {codigo = codigo})">Deletar</a>
                 </div>
             </div>
-            <div class="form-group btn-send">
-                <a class="btn1 btn btn-dark text-light" href="@Url.Action("ClienteUpdate","Clientes",new {codigo = codigo})">Editar</a>
-
-                <a class="btn1 btn btn-danger text-light" href="@Url.Action("Delete","Clientes",new {codigo = codigo})">Deletar</a>
-            </div>
-
-            </div>
-
-
         </form>
     </div>
 </div>

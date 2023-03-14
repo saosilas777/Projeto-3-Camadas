@@ -37,4 +37,20 @@ function login() {
         console.log(e.responseText);
     });
 }
+
+var $btnForget = document.getElementById('kt_login_forgot_form_btn');
+var $btnSignUp = document.getElementById('kt_login_signup_btn');
+$btnForget.addEventListener('click', loginForgot);
+$btnSignUp.addEventListener('click', signUp);
+
+function loginForgot() {
+
+    document.getElementById('kt_login_signin').style.display = 'none';
+    document.getElementById('kt_login_forgot').style.display = 'block';
+
+}
+function signUp() {
+    document.getElementById('kt_login_signin').style.display = 'none';
+    document.getElementById('kt_login_signup').style.display = 'block';
+}
 initDOM();

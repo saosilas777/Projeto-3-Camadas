@@ -83,12 +83,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="d-flex flex-center mb-15">
                         <a href="#">
                             
-                            <img src="~/novosite/dist/assets/media/logos/Intersec6.png" alt="" width="350px" />
+                            <img src="~/novosite/dist/assets/media/logos/Logo_intersec.svg" alt="" width="350px" />
                         </a>
                     </div>
                     <!--end::Login Header-->
                     <!--begin::Login Sign in form-->
-                    <div class="login-signin">
+                    <div class="login-signin" id="kt_login_signin">
                         <div class="mb-20">
                             <h3>Faça seu login!</h3>
                             <div class="text-muted font-weight-bold">Entre com os dados da sua conta:</div>
@@ -105,18 +105,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <input type="checkbox" name="remember" />Mantenha-me logado
                                     <span></span>
                                 </label>
-                                <a href="javascript:;" id="kt_login_forgot_form" class="text-muted text-hover-primary">Esqueceu sua senha ?</a>
+                                <a id="kt_login_forgot_form_btn" class="text-muted text-hover-primary">Esqueceu sua senha ?</a>
                             </div>
                             <button type="submit" id="kt_login_signin_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Sign In</button>
                         </form>
                         <div class="mt-10">
                             <span class="opacity-70 mr-4">Don't have an account yet?</span>
-                            <a href="javascript:;" id="kt_login_signup" class="text-muted text-hover-primary font-weight-bold">Sign Up!</a>
+                            <a href="javascript:;" id="kt_login_signup_btn" class="text-muted text-hover-primary font-weight-bold">Sign Up!</a>
                         </div>
                     </div>
                     <!--end::Login Sign in form-->
                     <!--begin::Login Sign up form-->
-                    <div class="login-signup">
+                    <div class="login-signup" id="kt_login_signup">
                         <div class="mb-20">
                             <h3>Sign Up</h3>
                             <div class="text-muted font-weight-bold">Enter your details to create your account</div>
@@ -150,7 +150,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <!--end::Login Sign up form-->
                     <!--begin::Login forgot password form-->
-                    <div class="login-forgot">
+                    <div class="login-forgot" id="kt_login_forgot">
                         <div class="mb-20">
                             <h3>Forgotten Password ?</h3>
                             <div class="text-muted font-weight-bold">Enter your email to reset your password</div>

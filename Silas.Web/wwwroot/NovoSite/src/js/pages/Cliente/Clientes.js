@@ -27,7 +27,7 @@ function ClientesCadastrados() {
 
 var KTDatatable = function () {
     var load = function () {
-        var Array = JSON.parse(jsonResponse);
+         var Array = JSON.parse(jsonResponse);
 
         var datatable = $('#kt_datatable').KTDatatable({
             // datasource definition
@@ -46,7 +46,7 @@ var KTDatatable = function () {
             pagination: true,
             search: {
                 input: $('#kt_datatable_search_query'),
-                key: 'generalSearch'
+                key: "generalSearch"
             },
 
             // columns definition
@@ -54,7 +54,7 @@ var KTDatatable = function () {
                 {
                     field: 'codigo',
                     title: 'Codigo',
-                    sortable: false,
+                    sortable: true,
                     width: 150,
                     textAlign: 'center',
                     template: function (row) {

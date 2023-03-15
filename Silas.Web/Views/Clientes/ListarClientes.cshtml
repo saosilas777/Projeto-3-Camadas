@@ -2,14 +2,14 @@
 <div class="card card-custom">
 	<div class="card-header flex-wrap border-0 pt-6 pb-0">
 		<div class="card-title">
-			<h3 class="card-label">
-				Sua lista de clientes
+			<h3 class="card-label" id="card-label">
+				Clientes cadastrados!
 				@*<span class="d-block text-muted pt-2 font-size-sm">Initialized from remote json file</span>*@
 			</h3>
 		</div>
 		<div class="card-toolbar">
 			<!--begin::Dropdown-->
-			<div class="dropdown dropdown-inline mr-2">
+			@*<div class="dropdown dropdown-inline mr-2">
 				<button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<span class="svg-icon svg-icon-md">
 						<!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
@@ -21,7 +21,7 @@
 							</g>
 						</svg>
 						<!--end::Svg Icon-->
-					</span>Export
+					</span>Exportar
 				</button>
 				<!--begin::Dropdown Menu-->
 				<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
@@ -72,10 +72,10 @@
 					<!--end::Navigation-->
 				</div>
 				<!--end::Dropdown Menu-->
-			</div>
+			</div>*@
 			<!--end::Dropdown-->
 			<!--begin::Button-->
-			<a href="#" class="btn btn-primary font-weight-bolder">
+			<a href="@Url.Action("CadastroCliente", "Clientes")" class="btn btn-primary font-weight-bolder">
 				<span class="svg-icon svg-icon-md">
 					<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -86,7 +86,7 @@
 						</g>
 					</svg>
 					<!--end::Svg Icon-->
-				</span>New Record
+				</span>Novo cadastro!
 			</a>
 			<!--end::Button-->
 		</div>

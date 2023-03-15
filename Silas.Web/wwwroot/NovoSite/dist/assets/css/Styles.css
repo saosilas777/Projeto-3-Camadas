@@ -5,8 +5,7 @@
     position: relative;
 }
 #kt_body {
-   
-    background: #ccc;
+    background: #c2daf9;
 }
 
 #principal-text h2, p {
@@ -23,3 +22,20 @@
         align-items: end;
         z-index: 99;
     }
+#kt_aside .logo-name {
+    color: red;
+    font-size: 16px;
+}
+.aside, #kt_brand, #kt_aside_menu, #menu-nav {
+    background-color: #021122;
+}
+#menu-text-id {
+    color: #fff;
+    font-weight:bold;
+}
+#card-label {
+    background-color: #3699FF;
+    color:#fff;
+    padding: 10px;
+    border-radius: 10px;
+}

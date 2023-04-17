@@ -45,35 +45,25 @@
         <!--begin::Form-->
         <form asp-action="Deletar" asp-controller="Clientes" method="post">
             <div class="card-body">
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">Código Cliente</label>
-                    <div class="col-8">
+                <div class="form-group">
+                    <label >Código Cliente</label>
                         <input class="form-control" type="text" id="codigo" name="Codigo" value="@codigo" readonly>
-                    </div>
                 </div>
-                <div class="form-group row">
-                    <label for="example-search-input" class="col-2 col-form-label">Razão Social</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" id="razaoSocial" name="RazaoSocial" value="@razaoSocial">
-                    </div>
+                <div class="form-group">
+                    <label >Razão Social</label>
+                        <input class="form-control" type="text" id="razaoSocial" name="RazaoSocial" value="@razaoSocial" readonly>
                 </div>
-                <div class="form-group row">
-                    <label for="example-email-input" class="col-2 col-form-label">Bairro</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" id="bairro" name="Bairro" value="@bairro">
-                    </div>
+                <div class="form-group">
+                    <label >Bairro</label>
+                        <input class="form-control" type="text" id="bairro" name="Bairro" value="@bairro" readonly>
                 </div>
-                <div class="form-group row">
-                    <label for="example-url-input" class="col-2 col-form-label">Cidade</label>
-                    <div class="col-8">
-                        <input class="form-control" id="cidade" name="cidade" value="@cidade">
-                    </div>
+                <div class="form-group">
+                    <label>Cidade</label>
+                        <input class="form-control" id="cidade" name="cidade" value="@cidade" readonly>
                 </div>
-                <div class="form-group row">
-                    <label for="example-tel-input" class="col-2 col-form-label">Estado</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" id="example-tel-input" name="estado" value="@estado">
-                    </div>
+                <div class="form-group">
+                    <label >Estado</label>
+                        <input class="form-control" type="text" id="example-tel-input" name="estado" value="@estado" readonly>
                 </div>
 
                 @foreach (var i in telefone)
@@ -86,11 +76,9 @@
 
                     var _name = "telefone-" + count.ToString();
 
-                    <div class="form-group row" id="telefone">
-                        <label for="example-password-input" class="col-2 col-form-label">@label</label>
-                        <div class="col-8">
-                            <input class="form-control" type="text" id="@_name" name="Telefone" value="@i.Telefone" maxlength="11">
-                        </div>
+                    <div class="form-group" id="telefone">
+                        <label >@label</label>
+                            <input class="form-control" type="text" id="@_name" name="Telefone" value="@i.Telefone" maxlength="11" readonly>
                     </div>
                     count++;
                 }
@@ -108,24 +96,29 @@
 
                     var _name = "email-" + count.ToString();
 
-                    <div class="form-group row" id="email">
-                        <label for="example-password-input" class="col-2 col-form-label">@label</label>
-                        <div class="col-8">
-                            <input class="form-control" type="text" id="@_name" name="Email" value="@i.Email">
-                        </div>
+                    <div class="form-group" id="email">
+                        <label>@label</label>
+                        
+                            <input class="form-control" type="text" id="@_name" name="Email" value="@i.Email" readonly>
+                      
                     </div>
                     count++;
                 }
                 @{
                     count = 0;
                 }
-                <div class="col-10">
-                    <button type="submit" class="btn btn-danger btn-success mr-2" id="btn-submit">Deletar</button>
-                    <a  class="btn btn-dark" href="@Url.Action("ListarClientes", "Clientes")">Cancelar</a>
-                </div>
 
+                <div class="form-group">
+                    <label>Confirme o código do cliente</label>
+                    <input class="form-control" type="text" id="confirmacao" name="confirmacao">
+                </div>
+               
+                <button type="submit" class="btn btn-danger btn-success mr-2" id="btn-submit" disabled>Deletar</button>
+                
+                <a  class="btn btn-dark" href="@Url.Action("ListarClientes", "Clientes")">Cancelar</a>
             </div>
 
         </form>
     </div>
 </div>
+<script src="~/NovoSite/src/js/pages/Cliente/enableSubmit.js"></script>

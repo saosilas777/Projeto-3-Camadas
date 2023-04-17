@@ -14,8 +14,8 @@ namespace Silas.Web.Services
     {
         public string changeUrl() {
 
-            //string url = "http://192.168.15.11:9999/";
-            string url = "https://localhost:5001/";
+            string url = "http://192.168.15.100:9999/";
+            //string url = "https://localhost:5001/";
 
             return url;
 

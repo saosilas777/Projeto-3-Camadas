@@ -12,7 +12,8 @@ namespace Silas.Web.Services
             UserModel userModel;
 
             var Json = JsonConvert.SerializeObject(login);
-            string url = "https://localhost:5001/Authentication";
+            //string url = "https://localhost:5001/Authentication";
+            string url = "http://192.168.15.100:9999/Authentication";
             var content = HttpHelper.POST(url, Json).Content;
 
            
